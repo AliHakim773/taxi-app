@@ -1,8 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import "./styles.css"
 import { Link } from "react-router-dom"
+import PfpDropDown from "./PfpDropDown"
 
 const NavBar = () => {
+    const [isHidden, setIsHidden] = useState(true)
+
+    const handleOnClickProfile = () => {
+        setIsHidden((prev) => !prev)
+    }
     return (
         <nav className='nav-bar'>
             <Link to={"/"}>
@@ -26,7 +32,10 @@ const NavBar = () => {
                         <Link className='nav-item'>Register</Link>
                     </li>
                     <li>
-                        <div className='pfp-pic'></div>
+                        <div className='pfp-pic' onClick={handleOnClickProfile}>
+                            <img src='' alt='' />
+                        </div>
+                        <PfpDropDown isHidden={isHidden} />
                     </li>
                 </ul>
             </div>
