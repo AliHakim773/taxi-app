@@ -1,8 +1,8 @@
 import React from "react"
 import "./styles.css"
 
-const SignIn = () => {
+const Login = () => {
     return <div>Sign</div>
 }
 
-export default SignIn
+export default Login
