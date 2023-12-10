@@ -1,0 +1,36 @@
+.form-input-wrapper {
+    height: 40px;
+    width: 400px;
+    position: relative;
+}
+.form-label,
+.form-input {
+    font-size: 16px;
+}
+.form-input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    position: absolute;
+    inset: 0 0 0 0;
+    padding-inline: 15px;
+}
+.form-input::placeholder {
+    position: absolute;
+    z-index: 12;
+    top: 50%;
+    left: 15px;
+    color: grey;
+    transform: translateY(-50%);
+    transition: 0.3s ease;
+}
+/* .form-input:focus + .form-label {
+    opacity: 0;
+    transform: translateY(-100%);
+    visibility: hidden;
+}
+.valid-value {
+    opacity: 0;
+    transform: translateY(-100%);
+    visibility: hidden;
+} */
