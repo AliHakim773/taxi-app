@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('driver_register_requests', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('phone_number');
             $table->string('location');
             $table->string('img_url');
-            $table->rememberToken();
+            $table->string('model');
+            $table->string('color');
+            $table->integer('plate_number');
+            $table->enum('request_status', ['pending', 'accepted']);
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('driver_register_requests');
     }
 };
