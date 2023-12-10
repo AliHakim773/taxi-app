@@ -3,7 +3,13 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\ChatRoom;
+use App\Models\Drivers;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use SebastianBergmann\CodeCoverage\Driver\Driver;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,9 +20,61 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'somewhere',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+
+        ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test1@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'somewhere',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+
+        ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test2@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'somewhere',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+
+        ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test3@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'somewhere',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+
+        ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test4@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'somewhere',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+        ]);
+        ChatRoom::create([
+            'sender_id' => 1,
+            'receiver_id' => 2,
+        ]);
+        ChatRoom::create([
+            'sender_id' => 2,
+            'receiver_id' => 3,
+        ]);
+        ChatRoom::create([
+            'sender_id' => 3,
+            'receiver_id' => 4,
+        ]);
     }
 }
