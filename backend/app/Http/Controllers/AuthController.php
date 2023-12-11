@@ -12,7 +12,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register_passenger', 'register_driver']]);
     }
 
     public function login(Request $request)
@@ -44,13 +44,22 @@ class AuthController extends Controller
 
     public function register_passenger(Request $request)
     {
+        // return response()->json([
+        //     'status' => 'idk',
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        //     'phone_number' => $request->phone_number,
+        //     'location' => $request->location,
+        //     'role_id' => 2,
+        // ]);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
             'phone_number' => 'required|min:8',
             'location' => 'required|string',
-            'location' => 'string|img_url',
+            'img_url' => 'string|img_url',
         ]);
 
         $user = User::create([
@@ -60,7 +69,8 @@ class AuthController extends Controller
             'phone_number' => $request->phone_number,
             'location' => $request->location,
             'img_url' => $request->img_url,
-            'role_id' => 2
+            'img_url' => $request->img_url ?? 'defualt',
+            'role_id' => 2,
         ]);
 
         $token = Auth::login($user);
