@@ -31,7 +31,9 @@ const NavBar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link className='nav-item'>Register</Link>
+                        <Link to={"/register"} className='nav-item'>
+                            Register
+                        </Link>
                     </li>
                     <li>
                         <div className='pfp-pic' onClick={handleOnClickProfile}>
