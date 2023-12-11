@@ -41,4 +41,5 @@ Route::controller(MessageController::class)->group(function(){
 });
 Route::controller(ChatRoomController::class)->group(function(){
     Route::get("getRooms",'getAllRooms');
+    Route::post('createRoom','createRoom');
 });
