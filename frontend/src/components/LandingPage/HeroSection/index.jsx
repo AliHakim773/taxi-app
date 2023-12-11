@@ -1,7 +1,7 @@
 import React from "react"
 import "./styles.css"
 import hero from "../../../assets/images/pic-1.webp"
-import SkewedBtn from "../../../components/SkewedBtn"
+import SkewedBtn from "../../common/SkewedBtn"
 
 const HeroSection = () => {
     return (
