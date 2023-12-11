@@ -1,8 +1,10 @@
+
+import MessagesContainer from '../messagesContainer'
 import './style.css'
 const Chat = () => {
   return (
     <div className="chat">
-      <h1>Welcome to chat</h1>
+      <MessagesContainer />
     </div>
   )
 }
