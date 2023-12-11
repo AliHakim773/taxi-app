@@ -1,40 +1,33 @@
 import React, { useState } from "react";
 import "./styles.css";
 import InputField from "../common/InputField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../common/Button";
-
+import { useDispatch } from "react-redux";
+import { requestData } from "../../core/axios";
+// import axios from "axios";
 const LoginForm = () => {
-  const [mail, setMail] = useState("");
-  const [password, setPassword] = useState("");
-  const HandleOnChangeEmail = (e) => {
-    setMail(e.target.value);
-  };
-  const HandleOnChangePassword = (e) => {
-    setPassword(e.target.value);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+  const HandleOnInputChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+    console.log(values);
   };
   const handleLogin = async () => {
-    const response = await sendRequest({
-      body: form,
-      route: "/login",
-      method: "POST",
-    });
-    console.log(response.status);
-
-    if (response.status === "success" && response.token) {
-      // console.log("HelloWOrld");
-      localStorage.setItem("logged_in", true);
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("role", response.role);
-      if (response.role === "admin") {
-        navigate("/Admin");
+    try {
+      const res = await requestData("login", "post", values);
+      if (res.status == "success") {
+        localStorage.setItem("token", `Bearer ${res.authorisation.token}`);
+        dispatch(setUser(res.user));
+        navigate("/ab");
       }
-      if (response.role === "doctor") {
-        navigate("/Doctor");
-      }
-      if (response.role === "patient") {
-        navigate("/Patient");
-      }
+      console.log(res);
+    } catch (err) {
+      console.log(err);
     }
   };
   return (
@@ -42,10 +35,26 @@ const LoginForm = () => {
       <h2 className="form-title">Enter Admin Credentials</h2>
       <div className="form-body">
         <div className="email-field-wrapper">
-          <InputField type={"email"} text={"Email"} value={mail} handleChange={HandleOnChangeEmail} />
+          <InputField
+            name={"email"}
+            type={"email"}
+            text={"Email"}
+            value={values.email}
+            handleChange={(e) => {
+              HandleOnInputChange(e);
+            }}
+          />
         </div>
         <div className="password-field-wrapper">
-          <InputField type={"password"} text={"Password"} value={password} handleChange={HandleOnChangePassword} />
+          <InputField
+            name={"password"}
+            type={"password"}
+            text={"Password"}
+            value={values.password}
+            handleChange={(e) => {
+              HandleOnInputChange(e);
+            }}
+          />
         </div>
         <div className="btn-wrapper">
           <Button className="admin-login" text={"Login"} handleOnClick={handleLogin} type={"submit"} />

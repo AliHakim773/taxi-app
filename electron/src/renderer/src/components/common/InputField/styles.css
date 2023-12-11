@@ -14,6 +14,8 @@
   position: absolute;
   inset: 0 0 0 0;
   padding-inline: 15px;
+  /* background: none; */
+  background-color: rgba(0, 0, 0, 0);
 }
 .form-input:-webkit-autofill,
 .form-input:-webkit-autofill:hover,
@@ -23,12 +25,13 @@
 }
 .form-label {
   position: absolute;
-  z-index: 12;
+  z-index: -1;
   top: 50%;
   left: 15px;
   color: grey;
   transform: translateY(-50%);
   transition: 0.3s ease;
+  user-select: none;
 }
 .form-input:focus + .form-label {
   opacity: 0;
