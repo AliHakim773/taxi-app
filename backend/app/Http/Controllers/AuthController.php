@@ -44,34 +44,24 @@ class AuthController extends Controller
 
     public function register_passenger(Request $request)
     {
-        // return response()->json([
-        //     'status' => 'idk',
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => $request->password,
-        //     'phone_number' => $request->phone_number,
-        //     'location' => $request->location,
-        //     'role_id' => 2,
-        // ]);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'phone_number' => 'required|min:8',
+            'phone_number' => 'required|string|min:3',
             'location' => 'required|string',
             'img_url' => 'string|img_url',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone_number' => $request->phone_number,
-            'location' => $request->location,
-            'img_url' => $request->img_url,
-            'img_url' => $request->img_url ?? 'defualt',
-            'role_id' => 2,
-        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->phone_number = $request->phone_number;
+        $user->location = $request->location;
+        $user->img_url = $request->img_url ?? 'defualt';
+        $user->role_id = 2;
+        $user->save();
 
         $token = Auth::login($user);
         return response()->json([
