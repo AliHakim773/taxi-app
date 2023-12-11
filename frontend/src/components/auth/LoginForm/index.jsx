@@ -4,11 +4,14 @@ import InputField from "../../common/InputField"
 import { Link, useNavigate } from "react-router-dom"
 import Button from "../../common/Button"
 import { requestData } from "../../../core/axios"
+import { useDispatch } from "react-redux"
+import { setUser } from "../../../core/redux/user/userSlice"
 
 const LoginForm = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    const [emailError, setEmailError] = useState({ msg: "", error: false })
+    const [error, setError] = useState({ msg: "", status: false })
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -24,14 +27,16 @@ const LoginForm = () => {
                     "token",
                     `Bearer ${res.authorisation.token}`
                 )
+                dispatch(setUser(res.user))
                 navigate("/")
             }
             console.log(res)
         } catch (err) {
-            setEmailError({
-                msg: err.response.data.errors.email[0],
-                error: true,
+            setError({
+                msg: "Wrong Credentials",
+                status: true,
             })
+            console.log(error)
         }
     }
 
@@ -45,8 +50,6 @@ const LoginForm = () => {
                         name={"email"}
                         text={"Email"}
                         value={values.email}
-                        errormsg={emailError.msg}
-                        error={emailError.error}
                         handleChange={HandleOnInputChange}
                     />
                 </div>
@@ -59,6 +62,7 @@ const LoginForm = () => {
                         handleChange={HandleOnInputChange}
                     />
                 </div>
+                {error.status ? <span className='error'>{error.msg}</span> : ""}
                 <div className='btn-wrapper'>
                     <Button
                         text={"Login"}

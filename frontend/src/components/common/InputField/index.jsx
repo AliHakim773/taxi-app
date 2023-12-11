@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./styles.css"
 
-const InputField = ({
-    value,
-    handleChange,
-    type,
-    text,
-    name,
-    error = false,
-    errormsg,
-}) => {
+const InputField = ({ value, handleChange, type, text, name }) => {
     const [visible, setVisible] = useState(true)
 
     useEffect(() => {
@@ -38,7 +30,6 @@ const InputField = ({
                     }>
                     {text}
                 </label>
-                <div className={error ? "error" : ""}>{errormsg}</div>
             </div>
         </>
     )
