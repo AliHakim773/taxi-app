@@ -13,8 +13,30 @@ const LoginForm = () => {
   const HandleOnChangePassword = (e) => {
     setPassword(e.target.value);
   };
-  const handleLogin = () => {};
+  const handleLogin = async () => {
+    const response = await sendRequest({
+      body: form,
+      route: "/login",
+      method: "POST",
+    });
+    console.log(response.status);
 
+    if (response.status === "success" && response.token) {
+      // console.log("HelloWOrld");
+      localStorage.setItem("logged_in", true);
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("role", response.role);
+      if (response.role === "admin") {
+        navigate("/Admin");
+      }
+      if (response.role === "doctor") {
+        navigate("/Doctor");
+      }
+      if (response.role === "patient") {
+        navigate("/Patient");
+      }
+    }
+  };
   return (
     <form className="login-form">
       <h2 className="form-title">Enter Admin Credentials</h2>
