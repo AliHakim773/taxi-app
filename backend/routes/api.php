@@ -37,7 +37,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 Route::controller(MessageController::class)->group(function(){
     Route::get('getMessages',"getAllMessages");
-    Route::post('postMessage','postMessage');
+    Route::post('createMessage','createMessage');
 });
 Route::controller(ChatRoomController::class)->group(function(){
     Route::get("getRooms",'getAllRooms');
