@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('phone_number');
             $table->string('location');
             $table->string('img_url');
+            $table->foreignId('role_id')->constrained()->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\ChatRoom;
 use App\Models\Drivers;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -20,8 +21,19 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        Role::create([
+            "name" => 'admin',
+        ]);
+        Role::create([
+            "name" => 'passenger',
+        ]);
+        Role::create([
+            "name" => 'driver',
+        ]);
+
         User::factory()->create([
             'name' => 'Test User',
+            'role_id' => 1,
             'email' => 'test@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
@@ -31,6 +43,7 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory()->create([
             'name' => 'Test User',
+            'role_id' => 3,
             'email' => 'test1@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
@@ -40,6 +53,7 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory()->create([
             'name' => 'Test User',
+            'role_id' => 3,
             'email' => 'test2@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
@@ -49,6 +63,7 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory()->create([
             'name' => 'Test User',
+            'role_id' => 2,
             'email' => 'test3@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
@@ -58,6 +73,7 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory()->create([
             'name' => 'Test User',
+            'role_id' => 2,
             'email' => 'test4@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
