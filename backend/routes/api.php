@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatRoomController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,4 +37,8 @@ Route::controller(AuthController::class)->group(function () {
 });
 Route::controller(MessageController::class)->group(function(){
     Route::get('getMessages',"getAllMessages");
+    Route::post('postMessage','postMessage');
+});
+Route::controller(ChatRoomController::class)->group(function(){
+    Route::get("getRooms",'getAllRooms');
 });
