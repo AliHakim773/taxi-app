@@ -1,9 +1,11 @@
 import "./styles/index.css";
 import Login from "./pages/Login";
 import { Route, Routes } from "react-router";
+import Navbar from "./components/Navbar";
 function App() {
   return (
-    <div>
+    <div className="page">
+      <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
       </Routes>

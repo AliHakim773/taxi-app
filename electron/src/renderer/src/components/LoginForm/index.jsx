@@ -3,6 +3,7 @@ import "./styles.css";
 import InputField from "../common/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../common/Button";
+import { setUser } from "../../core/redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { requestData } from "../../core/axios";
 // import axios from "axios";
@@ -22,6 +23,7 @@ const LoginForm = () => {
       const res = await requestData("login", "post", values);
       if (res.status == "success") {
         localStorage.setItem("token", `Bearer ${res.authorisation.token}`);
+        console.log(res.user);
         dispatch(setUser(res.user));
         navigate("/ab");
       }

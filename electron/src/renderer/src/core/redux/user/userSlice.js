@@ -12,7 +12,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
-      const { name, email, role_id } = action.payload;
+      const { name, email, role_id, img_url } = action.payload;
       return {
         name,
         email,
