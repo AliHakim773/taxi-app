@@ -40,3 +40,10 @@
     transform: translateY(-100%);
     visibility: hidden;
 }
+.error {
+    position: absolute;
+    left: 5px;
+    top: -10px;
+    font-size: 12px;
+    color: red;
+}

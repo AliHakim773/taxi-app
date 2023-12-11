@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react"
 import "./styles.css"
 
-const InputField = ({ value, handleChange, type, text, name }) => {
+const InputField = ({
+    value,
+    handleChange,
+    type,
+    text,
+    name,
+    error = false,
+    errormsg,
+}) => {
     const [visible, setVisible] = useState(true)
 
     useEffect(() => {
@@ -13,21 +21,26 @@ const InputField = ({ value, handleChange, type, text, name }) => {
     }, [value])
 
     return (
-        <div className='form-input-wrapper'>
-            <input
-                type={type}
-                name={name}
-                id={text}
-                className='form-input'
-                value={value}
-                onChange={handleChange}
-            />
-            <label
-                htmlFor='email'
-                className={visible ? "form-label" : "form-label visible-value"}>
-                {text}
-            </label>
-        </div>
+        <>
+            <div className='form-input-wrapper'>
+                <input
+                    type={type}
+                    name={name}
+                    id={text}
+                    className='form-input'
+                    value={value}
+                    onChange={handleChange}
+                />
+                <label
+                    htmlFor='email'
+                    className={
+                        visible ? "form-label" : "form-label visible-value"
+                    }>
+                    {text}
+                </label>
+                <div className={error ? "error" : ""}>{errormsg}</div>
+            </div>
+        </>
     )
 }
 

@@ -8,6 +8,7 @@ import { requestData } from "../../../core/axios"
 const LoginForm = () => {
     const navigate = useNavigate()
 
+    const [emailError, setEmailError] = useState({ msg: "", error: false })
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -27,7 +28,10 @@ const LoginForm = () => {
             }
             console.log(res)
         } catch (err) {
-            console.log(err)
+            setEmailError({
+                msg: err.response.data.errors.email[0],
+                error: true,
+            })
         }
     }
 
@@ -41,6 +45,8 @@ const LoginForm = () => {
                         name={"email"}
                         text={"Email"}
                         value={values.email}
+                        errormsg={emailError.msg}
+                        error={emailError.error}
                         handleChange={HandleOnInputChange}
                     />
                 </div>
@@ -68,5 +74,4 @@ const LoginForm = () => {
         </form>
     )
 }
-
 export default LoginForm
