@@ -42,7 +42,39 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function register_passenger(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'phone_number' => 'required|min:8',
+            'location' => 'required|string',
+            'location' => 'string|img_url',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone_number' => $request->phone_number,
+            'location' => $request->location,
+            'img_url' => $request->img_url,
+            'role_id' => 2
+        ]);
+
+        $token = Auth::login($user);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User created successfully',
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+    }
+    public function register_driver(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
