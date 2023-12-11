@@ -1,10 +1,6 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-<<<<<<< HEAD
-use App\Http\Controllers\TestController;
-=======
->>>>>>> roe_gates
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Event\Code\TestCollectionIterator;
