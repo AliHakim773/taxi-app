@@ -3,7 +3,6 @@ import "./styles.css"
 import { Link } from "react-router-dom"
 
 const PfpDropDown = ({ isHidden }) => {
-    console.log(isHidden)
     return (
         <div className={isHidden ? "pfp-drop-down" : "pfp-drop-down pfp-show"}>
             <Link className='pfp-drop-down-item'>Edit Profile</Link>
