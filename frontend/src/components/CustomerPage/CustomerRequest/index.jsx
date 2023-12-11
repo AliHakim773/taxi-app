@@ -31,7 +31,7 @@ function CustomerRequest() {
                 <circle cx="12" cy="10" r="3" />
               </svg>
             </span>
-            <span class="btn__invisible">Current Location</span>
+            <span className="btn__invisible">Current Location</span>
           </button>
         </div>
         <div className="form-row">
@@ -43,7 +43,7 @@ function CustomerRequest() {
             required
           />
           <button className="btn-animated current-location_btn">
-            <span class="btn__visible">
+            <span className="btn__visible">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -58,7 +58,7 @@ function CustomerRequest() {
                 <path d="M20.59 7.77l-5.59-5.59a2 2 0 0 0-2.83 0L2 15.59a1 1 0 0 0-.29.71l-1 5a1 1 0 0 0 1 1l5-1a1 1 0 0 0 .71-.29l13.41-13.41a2 2 0 0 0 0-2.83zM7 19l.81-4.05m2.68-2.68L19 8" />
               </svg>
             </span>
-            <span class="btn__invisible">Choose on map</span>
+            <span className="btn__invisible">Choose on map</span>
           </button>
         </div>
         <div className="form-row">
