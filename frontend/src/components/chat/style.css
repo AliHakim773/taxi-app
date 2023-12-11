@@ -42,3 +42,11 @@ header .logo {
   display: flex;
   flex: 1;
 }
+
+.logo-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
