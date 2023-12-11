@@ -24,5 +24,7 @@ export const getMessages = async (route, method, data = null, headers = {}) => {
                 "Content-Type": "application/json",
                 ...headers
             }
+        }).then(res => {
+            console.log(res)
         })
 }
