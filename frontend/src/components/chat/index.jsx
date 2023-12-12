@@ -1,9 +1,9 @@
 
 import Input from '../input'
-import MessagesContainer from '../messagesContainer'
+import MessagesContainer from '../messagesContainer/messages-container.component'
 import { ReactComponent as SendLogo } from '../../assets/svg/sendLogo.svg'
 import './style.css'
-const Chat = ({ messages, roleId }) => {
+const Chat = () => {
   return (
     <div className="chat">
       <header>
