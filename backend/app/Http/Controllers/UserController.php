@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -16,10 +17,14 @@ class UserController extends Controller
 
     public function get_user()
     {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-        ]);
+        $user = Auth::user();
+        if ($user->role->name == 'driver') {
+            return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'car' => $user->driver->car
+            ]);
+        }
     }
 
     public function edit_driver(Request $request)
