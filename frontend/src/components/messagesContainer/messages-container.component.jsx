@@ -4,6 +4,7 @@ import { getMessages } from "../../core/axios"
 import { useEffect, useState } from "react"
 
 import './style.css'
+import Message from "../message/message.component"
 const MessagesContainer = () => {
   const dispatch = useDispatch()
   const userState = useSelector(extractUserSlice)
@@ -12,7 +13,7 @@ const MessagesContainer = () => {
     async function fetchMessages() {
       try {
         const messages = await getMessages('getMessages', 'GET');
-        setMessages(messages)
+        setMessages(messages.messages)
       } catch (error) {
         console.log(error)
       }
@@ -23,6 +24,11 @@ const MessagesContainer = () => {
   console.log(userState)
   return (
     <div className="messages-container">
+      {
+        messages.map(message => {
+          return <Message key={message.id} userId={userState.user_id} message={message} />
+        })
+      }
     </div>
   )
 }
