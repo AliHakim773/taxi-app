@@ -34,7 +34,6 @@ const NavBar = () => {
                     dispatch(setUser(res.user))
                     setIsLoggedIn(true)
                 }
-                console.log(res)
             } catch (err) {
                 console.log(err)
             }
