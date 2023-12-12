@@ -28,7 +28,7 @@ class AuthController extends Controller
         if (!$token) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Unauthorized',
+                'message' => 'wrong creds',
             ], 401);
         }
 
@@ -88,6 +88,7 @@ class AuthController extends Controller
             'color' => 'required|string',
             'plate_number' => 'required|string',
         ]);
+
         $user = new DriverRegisterRequest();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -123,10 +124,6 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
         ]);
     }
 }

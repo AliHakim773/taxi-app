@@ -11,6 +11,7 @@ const EditPassengerProfileForm = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const [file, setFile] = useState(null)
     const [error, setError] = useState({ msg: "", status: false })
     const [values, setValues] = useState({
         name: "",
@@ -20,14 +21,6 @@ const EditPassengerProfileForm = () => {
         location: "",
         phone_number: "",
     })
-
-    const token = localStorage.getItem("token")
-    const headers = {
-        Authorization: token,
-    }
-    if (!token) {
-        navigate("/")
-    }
 
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -61,6 +54,35 @@ const EditPassengerProfileForm = () => {
         getUser()
     }, [])
 
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0])
+    }
+
+    const handleFileUpload = async () => {
+        const formData = new FormData()
+        formData.append("picture", file)
+
+        // try {
+        //     const response = await fetch(
+        //         "http://127.0.0.1:8000/api/upload_pic",
+        //         {
+        //             method: "POST",
+        //             // body: formData,
+        //         }
+        //     )
+
+        //     if (response.ok) {
+        //         const result = await response.json()
+        //         console.log("Upload successful:", result)
+        //         // setImg(result.picture_path)
+        //     } else {
+        //         console.error("Upload failed:", response.statusText)
+        //     }
+        // } catch (error) {
+        //     console.error("Error during upload:", error.message)
+        // }
+    }
+
     const HandleOnInputChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
@@ -80,6 +102,9 @@ const EditPassengerProfileForm = () => {
             })
             return
         }
+
+        handleFileUpload()
+
         try {
             const res = await requestData(
                 "edit_passenger",
@@ -87,8 +112,10 @@ const EditPassengerProfileForm = () => {
                 values,
                 headers
             )
+
             if (res.status == "success") {
                 dispatch(setUser(res.user))
+                setError({ msg: "", status: false })
             }
         } catch (err) {
             setError({
@@ -115,6 +142,7 @@ const EditPassengerProfileForm = () => {
                             name='pfp-img'
                             id='pfp-img'
                             placeholder='Upload Photo'
+                            onChange={handleFileChange}
                         />
                     </div>
                 </div>
