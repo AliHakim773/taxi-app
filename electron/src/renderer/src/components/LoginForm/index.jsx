@@ -57,10 +57,6 @@ const LoginForm = () => {
               HandleOnInputChange(e);
             }}
           />
-
-          <Link to={"/forgotpassword"} className="forgot-pass">
-            Forgot Password?.
-          </Link>
         </div>
         <div className="btn-wrapper">
           <Button text={"Login"} handleOnClick={handleLogin} type={"submit"} />

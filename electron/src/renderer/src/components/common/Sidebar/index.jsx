@@ -15,10 +15,10 @@ export const Sidebar = () => {
   }, [location.pathname]);
   return display ? (
     <div className="sidebar flex column">
-      <ul class="main-list">
+      <ul className="main-list">
         <li>
           Dashboards
-          <ul class="sub-list">
+          <ul className="sub-list">
             <li onClick={() => navigate("/drivers")}>Drivers</li>
             <li onClick={() => navigate("/passengers")}>Passengers</li>
           </ul>
