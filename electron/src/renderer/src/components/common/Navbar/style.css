@@ -4,6 +4,8 @@
   padding: 10px 20px;
   box-shadow: 5px 2px 2px rgb(135, 135, 135);
   align-items: center;
+  z-index: 12;
+  position: relative;
 }
 
 .navbar h1 {

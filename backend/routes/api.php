@@ -37,4 +37,6 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(AdminAuthController::class)->group(function () {
     Route::post('admin/login', 'login');
+    Route::post('admin/refresh', 'refresh');
+    Route::post('admin/logout', 'logout');
 });

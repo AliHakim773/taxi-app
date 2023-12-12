@@ -1,0 +1,28 @@
+.sidebar {
+  background-image: linear-gradient(to top, #272626, #ffc000); /* Change #ffffff to your desired top color */
+  height: 93vh;
+  width: 250px;
+  box-shadow: 2px 5px 5px 2px rgb(135, 135, 135);
+  z-index: 0;
+}
+
+.sidebuttons {
+  gap: 65px;
+  padding: 45px 1px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+li {
+  font-size: 1.3rem;
+  font-weight: 600;
+  box-shadow: 0px 2px 0px 0px rgb(55, 55, 55);
+  width: 100%;
+  padding: 15px 30px;
+}
+
+li:hover {
+  cursor: pointer;
+  box-shadow: 0px 5px 5px 5px rgb(55, 55, 55);
+  background-color: #ffca29;
+}

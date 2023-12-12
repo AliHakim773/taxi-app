@@ -13,4 +13,5 @@
   align-items: center;
   /* flex-direction: column; */
   height: 92vh;
+  width: 100%;
 }
