@@ -73,7 +73,10 @@ const NavBar = () => {
                                 <div
                                     className='pfp-pic'
                                     onClick={handleOnClickProfile}>
-                                    <img src='' alt='' />
+                                    <img
+                                        src={`http://127.0.0.1:8000/storage/${userState.img_url}`}
+                                        alt=''
+                                    />
                                 </div>
                                 <PfpDropDown
                                     isHidden={isHidden}

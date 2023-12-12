@@ -44,7 +44,6 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
             'phone_number' => 'required|integer|min:3',
             'location' => 'required|string',
-            'img_url' => 'string|img_url',
             'model' => 'required|string',
             'color' => 'required|string',
             'plate_number' => 'required|string',
@@ -55,7 +54,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->phone_number = $request->phone_number;
         $user->location = $request->location;
-        $user->img_url = $request->img_url ?? 'defualt';
+        $user->img_url =  'uploads/default.jpg';
 
         $user->save();
 
@@ -84,7 +83,6 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
             'phone_number' => 'required|integer|min:3',
             'location' => 'required|string',
-            'img_url' => 'string|img_url',
         ]);
 
         $user->name = $request->name;
@@ -92,7 +90,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->phone_number = $request->phone_number;
         $user->location = $request->location;
-        $user->img_url = $request->img_url ?? 'defualt';
+        $user->img_url = 'uploads/default.jpg';
 
         $user->save();
 
@@ -101,5 +99,21 @@ class UserController extends Controller
             'message' => 'Profile Edited Successfuly',
             'user' => $user
         ]);
+    }
+
+    public function upload_pic(Request $request)
+    {
+        $request->validate([
+            'picture' => 'image|mimes:jpeg,png,jpg,gif,webp', // Adjust validation rules as needed
+        ]);
+
+        $picturePath = $request->file('picture')->store('uploads', 'public');
+
+        $user = Auth::user();
+        $user = User::find($user->id);
+        $user->img_url = $picturePath;
+        $user->save();
+
+        return response()->json(['message' => 'Picture uploaded successfully', 'picture_path' => $picturePath]);
     }
 }

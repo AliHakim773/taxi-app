@@ -12,6 +12,7 @@ const EditPassengerProfileForm = () => {
     const dispatch = useDispatch()
 
     const [file, setFile] = useState(null)
+    const [img, setImg] = useState(null)
     const [error, setError] = useState({ msg: "", status: false })
     const [values, setValues] = useState({
         name: "",
@@ -35,6 +36,7 @@ const EditPassengerProfileForm = () => {
             try {
                 const res = await requestData("get_user", "get", {}, headers)
                 if (res.status == "success") {
+                    setImg(res.user.img_url)
                     setValues({
                         name: res.user.name,
                         email: res.user.email,
@@ -59,28 +61,35 @@ const EditPassengerProfileForm = () => {
     }
 
     const handleFileUpload = async () => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            Authorization: token,
+        }
         const formData = new FormData()
         formData.append("picture", file)
 
-        // try {
-        //     const response = await fetch(
-        //         "http://127.0.0.1:8000/api/upload_pic",
-        //         {
-        //             method: "POST",
-        //             // body: formData,
-        //         }
-        //     )
+        try {
+            const response = await fetch(
+                "http://127.0.0.1:8000/api/upload_pic",
+                {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        ...headers,
+                    },
+                }
+            )
 
-        //     if (response.ok) {
-        //         const result = await response.json()
-        //         console.log("Upload successful:", result)
-        //         // setImg(result.picture_path)
-        //     } else {
-        //         console.error("Upload failed:", response.statusText)
-        //     }
-        // } catch (error) {
-        //     console.error("Error during upload:", error.message)
-        // }
+            if (response.ok) {
+                const result = await response.json()
+                console.log("Upload successful:", result)
+                setImg(result.picture_path)
+            } else {
+                console.error("Upload failed:", response.statusText)
+            }
+        } catch (error) {
+            console.error("Error during upload:", error.message)
+        }
     }
 
     const HandleOnInputChange = (e) => {
@@ -103,8 +112,6 @@ const EditPassengerProfileForm = () => {
             return
         }
 
-        handleFileUpload()
-
         try {
             const res = await requestData(
                 "edit_passenger",
@@ -112,8 +119,8 @@ const EditPassengerProfileForm = () => {
                 values,
                 headers
             )
-
             if (res.status == "success") {
+                handleFileUpload()
                 dispatch(setUser(res.user))
                 setError({ msg: "", status: false })
             }
@@ -128,7 +135,10 @@ const EditPassengerProfileForm = () => {
         <form className='edit-form'>
             <div className='profile-header'>
                 <div className='edit-pfp-pic'>
-                    <img src={defaultPic} alt='Profile Picture' />
+                    <img
+                        src={`http://127.0.0.1:8000/storage/${img}`}
+                        alt='Profile Picture'
+                    />
                 </div>
                 <div className='edit-info'>
                     <div className='edit-name'>John Doe</div>
