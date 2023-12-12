@@ -40,13 +40,14 @@ public function getAllMessages(){
         return response()->json(['message'=>"Message created"])
             ->header('Access-Control-Allow-Origin', '*');
 }
-    public function getUsersMessages(){
+    public function getUsersMessages(Request $req){
         //userid => bdi jib kl l messages
         //we get the userid from the token
         $user=Auth::user();//authenticated user 
         $userId=$user->id;
-        $senderMessages=ChatMessages::where('sender_id',$userId)->where('receiver_id',2)->get();//get all
-        $receiverMessages=ChatMessages::where('receiver_id',$userId)->where('sender_id',2)->get();//get all
+        $receiver=$req->receiverId;
+        $senderMessages=ChatMessages::where('sender_id',$userId)->where('receiver_id',$receiver)->get();//get all
+        $receiverMessages=ChatMessages::where('receiver_id',$userId)->where('sender_id',$receiver)->get();//get all
         $allMessages = $senderMessages->merge($receiverMessages);
         $allMessagesSorted = $allMessages->sortBy('created_at')->values();
         // $messages=$user->sentMessages;
