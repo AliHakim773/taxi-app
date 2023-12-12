@@ -1,0 +1,6 @@
+.customer-interaction {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
