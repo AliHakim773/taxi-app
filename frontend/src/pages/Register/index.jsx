@@ -1,19 +1,19 @@
 import React from "react"
+import "./styles.css"
 import NavBar from "../../components/common/NavBar"
 import Footer from "../../components/common/Footer"
-import LoginForm from "../../components/auth/LoginForm"
-import "./styles.css"
+import RegisterForm from "../../components/auth/RegisterForm"
 
-const Login = () => {
+const Register = () => {
     return (
-        <div className='page'>
+        <div>
             <NavBar />
-            <main className='login-main'>
-                <LoginForm />
+            <main className='register-main'>
+                <RegisterForm />
             </main>
             <Footer />
         </div>
     )
 }
 
-export default Login
+export default Register
