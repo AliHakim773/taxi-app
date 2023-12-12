@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import NavBar from "../../components/common/NavBar";
 import Footer from "../../components/common/Footer";
@@ -10,12 +10,14 @@ import DriveFinished from "../../components/CustomerPage/DriveFinished";
 import RejectedRequest from "../../components/CustomerPage/RejectedRequest";
 import RequestSent from "../../components/CustomerPage/RequestSent";
 function CustomerPage() {
+  const [currentBtn, setCurrentBtn] = useState(false);
+  const [userLocation, setUserLocation] = useState(false);
   return (
     <div>
       <NavBar />
       <div className="customer-interaction">
-        <CustomerRequest />
-        <CustomerMap />
+        <CustomerRequest setCurrentBtn={setCurrentBtn} />
+        <CustomerMap currentBtn={currentBtn} />
       </div>
       <AvailableDrivers />
       <RequestSent />

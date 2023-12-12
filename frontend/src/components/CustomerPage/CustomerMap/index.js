@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -9,7 +9,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import "./styles.css";
 
-function CustomerMap() {
+function CustomerMap({ currentBtn }) {
   const [userLocation, setUserLocation] = useState(null);
 
   function flyToUserLocation() {
@@ -29,6 +29,7 @@ function CustomerMap() {
       click: () => {
         if (setUserLocation) {
           flyToUserLocation();
+          console.log(userLocation);
           map.flyTo(userLocation, 15);
         }
       },
@@ -36,6 +37,13 @@ function CustomerMap() {
 
     return null;
   }
+
+  useEffect(() => {
+    if (currentBtn) {
+      // If currentBtn is true, fly to the user's location
+      flyToUserLocation();
+    }
+  }, [currentBtn]); // Run this effect whenever currentBtn changes
 
   return (
     <div className="map-container">
@@ -59,10 +67,6 @@ function CustomerMap() {
             </Popup>
           </Marker>
         )}
-
-        <button onClick={flyToUserLocation} className=".button-container">
-          Fly to My Location
-        </button>
 
         {userLocation && (
           <FlyToUserLocation setUserLocation={setUserLocation} />

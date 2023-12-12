@@ -1,6 +1,10 @@
 import React from "react";
 import "./styles.css";
-function CustomerRequest() {
+function CustomerRequest({ setCurrentBtn }) {
+  const handleClick = () => {
+    setCurrentBtn(true);
+  };
+ 
   return (
     <div className="customer-request">
       <h2 className="request-title">Request a drive</h2>
@@ -13,7 +17,10 @@ function CustomerRequest() {
             placeholder="Enter Pick-up Location:"
             required
           />
-          <button className="btn-animated current-location_btn">
+          <button
+            className="btn-animated current-location_btn"
+            onClick={handleClick}
+          >
             <span class="btn__visible">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
