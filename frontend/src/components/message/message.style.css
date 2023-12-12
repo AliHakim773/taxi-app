@@ -8,6 +8,9 @@
   width: 40%;
   color: white;
   text-transform: capitalize;
+  font-weight: bold;
+  font-size: 20px;
+
 }
 
 .message-holder>div.left {
@@ -17,7 +20,7 @@
 }
 
 .message-holder>div.right {
-  margin-right: left;
+  margin-left: auto;
   border-bottom-right-radius: 10px;
   background-color: #ffc000
 }

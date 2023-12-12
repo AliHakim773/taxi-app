@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react';
+import { postMessage } from "../../core/axios"
 import { ReactComponent as SendLogo } from '../../assets/svg/sendLogo.svg'
 import './style.css'
-const Input = () => {
+const Input = ({ userId }) => {
   const [inputValue, setInputValue] = useState('')
   function inputChange(e) {
     setInputValue(e.target.value)
+  }
+  async function createMessage() {
+    try {
+      console.log({ content: inputValue, chatRoomId: 3, userId })
+      const response = await postMessage(`createMessage`, 'POST', { content: inputValue, chatRoomId: 3, userId })
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <>
@@ -12,6 +21,7 @@ const Input = () => {
       <div className="logo-holder">
         <button onClick={() => {
           console.log(inputValue)
+          createMessage()
           setInputValue('')
         }} >
           <SendLogo />

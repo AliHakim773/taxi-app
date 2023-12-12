@@ -31,3 +31,21 @@ export const getMessages = async (route, method, data = null, headers = {}) => {
         throw error;
     }
 }
+export const postMessage = async (route, method, data, headers = {}) => {
+    console.log(data)
+    try {
+        const response = await axios.request({
+            url: `http://127.0.0.1:8000/api/${route}`,
+            method,
+            headers: {
+                'Content-Type': "application/json",
+                ...headers
+            },
+            data
+        })
+        console.log(response)
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
