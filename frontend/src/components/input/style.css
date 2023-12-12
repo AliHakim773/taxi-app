@@ -1,0 +1,15 @@
+.input-container input {
+  border: none;
+  display: block;
+  padding: 0px 10px;
+  flex: 1;
+  font-size: 20px;
+}
+
+.input-container input::placeholder {
+  transition: .3s;
+}
+
+.input-container input:focus::placeholder {
+  opacity: 0;
+}
