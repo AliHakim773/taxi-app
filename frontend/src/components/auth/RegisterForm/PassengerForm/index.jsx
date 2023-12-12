@@ -24,15 +24,16 @@ const PassengerForm = () => {
     }
 
     const handleRegister = async () => {
-        if (values.confirmPassword === values.password) {
+        if (values.confirmPassword !== values.password) {
             setError({
-                msg: "password",
+                msg: "passwords doesnt match",
                 status: true,
             })
             return
         }
         try {
             const res = await requestData("register_passenger", "post", values)
+            console.log(res)
             if (res.status == "success") {
                 localStorage.setItem(
                     "token",
@@ -41,11 +42,9 @@ const PassengerForm = () => {
                 dispatch(setUser(res.user))
                 navigate("/")
             }
-            console.log(res)
-            return
         } catch (err) {
             setError({
-                msg: "Wrong Information",
+                msg: "Something went Wrong",
                 status: true,
             })
         }
@@ -100,6 +99,7 @@ const PassengerForm = () => {
                     handleChange={HandleOnInputChange}
                 />
             </div>
+            {error.status ? <span className='error'>{error.msg}</span> : ""}
             <div className='submit-btn-wrapper'>
                 <Button
                     text={"Register"}

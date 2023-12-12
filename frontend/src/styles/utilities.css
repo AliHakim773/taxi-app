@@ -3,3 +3,8 @@
     width: 100vw;
     overflow-y: auto;
 }
+.error {
+    padding-left: 10px;
+    font-size: 12px;
+    color: red;
+}
