@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('to_long');
             $table->string('to_lat');
             $table->decimal('price', 10, 2);
-            $table->decimal('rate');
+            $table->integer('rating')->nullable();
             $table->time('duration');
             $table->enum('status', ['pending', 'accepted', 'finished', 'canceled', 'denied']);
             $table->timestamps();
