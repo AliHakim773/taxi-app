@@ -2,10 +2,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { extractUserSlice, setUser } from "../../core/redux/user/userSlice"
 import Input from '../input'
 import MessagesContainer from '../messagesContainer/messages-container.component'
+
 import './style.css'
 const Chat = () => {
   const dispatch = useDispatch()
   const userState = useSelector(extractUserSlice)
+
   return (
     <div className="chat">
       <header>
