@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { postMessage } from "../../core/axios"
+import { postMessage, getMessages } from "../../core/axios"
 import { ReactComponent as SendLogo } from '../../assets/svg/sendLogo.svg'
 import { extractMessagesSlice, setMessages } from "../../core/redux/messages/messagesSlice"
 import { useDispatch, useSelector } from "react-redux"
@@ -17,12 +17,21 @@ const Input = ({ userId }) => {
       console.log(error)
     }
   }
+  async function fetchMessages() {
+    try {
+      const data = await getMessages('getMessages', 'GET');
+      dispatch(setMessages({ allMessages: data.messages }))
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       <input type="text" onChange={inputChange} value={inputValue} placeholder='Enter you message' />
       <div className="logo-holder">
-        <button onClick={() => {
-          createMessage()
+        <button onClick={async () => {
+          await createMessage()
+          await fetchMessages()
           setInputValue('')
         }} >
           <SendLogo />
