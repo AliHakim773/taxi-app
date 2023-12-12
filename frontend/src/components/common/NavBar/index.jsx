@@ -27,10 +27,6 @@ const NavBar = () => {
             try {
                 const res = await requestData("refresh", "post", {}, headers)
                 if (res.status == "success") {
-                    localStorage.setItem(
-                        "token",
-                        `Bearer ${res.authorisation.token}`
-                    )
                     dispatch(setUser(res.user))
                     setIsLoggedIn(true)
                 }
@@ -77,7 +73,10 @@ const NavBar = () => {
                                 <div
                                     className='pfp-pic'
                                     onClick={handleOnClickProfile}>
-                                    <img src='' alt='' />
+                                    <img
+                                        src={`http://127.0.0.1:8000/storage/${userState.img_url}`}
+                                        alt=''
+                                    />
                                 </div>
                                 <PfpDropDown
                                     isHidden={isHidden}

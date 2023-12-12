@@ -13,12 +13,11 @@ const EditProfile = () => {
         <div className='page'>
             <NavBar />
             <main className='edit-main'>
-                {/* {userState.role_id == 3 ? (
+                {userState.role_id == 3 ? (
                     <EditDriverProfileForm />
                 ) : (
                     <EditPassengerProfileForm />
-                )} */}
-                <EditDriverProfileForm />
+                )}
             </main>
             <Footer />
         </div>
