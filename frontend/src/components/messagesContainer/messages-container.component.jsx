@@ -9,6 +9,7 @@ const MessagesContainer = () => {
   const dispatch = useDispatch()
   const userState = useSelector(extractUserSlice)
   const [messages, setMessages] = useState([])
+  let timeout = 0, interval = 0
   useEffect(() => {
     async function fetchMessages() {
       try {
@@ -18,10 +19,13 @@ const MessagesContainer = () => {
         console.log(error)
       }
     }
-    fetchMessages();
+    fetchMessages()
+    clearInterval(interval)
+    interval = setInterval(() => {
+      fetchMessages()
+    }, 5000)
   }, []);
   console.log(messages)
-  console.log(userState)
   return (
     <div className="messages-container">
       {
