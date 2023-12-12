@@ -14,11 +14,23 @@ class UserController extends Controller
         $this->middleware('auth:api');
     }
 
+    public function get_user()
+    {
+        return response()->json([
+            'status' => 'success',
+            'user' => Auth::user(),
+        ]);
+    }
+
     public function edit_driver(Request $request)
     {
-        $user = Auth::user();
-
         $this->authorize('driver');
+        $user = Auth::user();
+        return response()->json([
+            'status' => 'yoo',
+            'message' => 'pfp',
+            'user' => $user,
+        ]);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
