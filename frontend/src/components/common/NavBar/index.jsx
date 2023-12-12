@@ -20,7 +20,6 @@ const NavBar = () => {
         }
 
         if (!token) {
-            console.error("Token not available")
             setIsLoggedIn(false)
             return
         }

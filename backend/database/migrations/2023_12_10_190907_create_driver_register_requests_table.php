@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('img_url');
             $table->string('model');
             $table->string('color');
-            $table->integer('plate_number');
+            $table->string('plate_number');
             $table->enum('request_status', ['pending', 'accepted']);
             $table->timestamps();
         });

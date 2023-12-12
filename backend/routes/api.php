@@ -24,14 +24,8 @@ use PHPUnit\Event\Code\TestCollectionIterator;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
-    Route::post('register', 'register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
-});
-
-Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::post('register', 'register');
+    Route::post('register_passenger', 'register_passenger');
+    Route::post('register_driver', 'register_driver');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
