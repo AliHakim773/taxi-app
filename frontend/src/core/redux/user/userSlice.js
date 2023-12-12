@@ -6,7 +6,6 @@ const initialState = {
     role_id: "",
     img_url: "",
 }
-
 export const userSlice = createSlice({
     name: "user",
     initialState,

@@ -3,10 +3,16 @@ import { getMessages } from "../../core/axios"
 import { useEffect, useState } from "react"
 import { extractMessagesSlice, setMessages } from "../../core/redux/messages/messagesSlice"
 import { useDispatch, useSelector } from "react-redux"
+import { useLocation } from 'react-router-dom';
 import './style.css'
 import Message from "../message/message.component"
 const MessagesContainer = ({ userId }) => {
   let dispatch = useDispatch()
+  const location = useLocation()
+  let receiver = 3;
+  if (location.pathname.includes('contact')) {
+    receiver = 1
+  }
   const { allMessages } = useSelector(extractMessagesSlice)
   console.log('Component re rendered')
   let timeout = 0, interval = 0
@@ -15,18 +21,17 @@ const MessagesContainer = ({ userId }) => {
     async function fetchMessages() {
       try {
         const headers = { Authorization: localStorage.getItem('token') }
-        // console.log(headers)
-        const data = await getMessages('getUsersMessages', 'GET', null, headers);
+        const data = await getMessages('getUsersMessages', 'POST', { receiverId: receiver }, headers);
         dispatch(setMessages({ allMessages: data['sorted messages'] }))
       } catch (error) {
         console.log(error)
       }
     }
     fetchMessages()
-    clearInterval(interval)
-    interval = setInterval(() => {
-      fetchMessages()
-    }, 3000)
+    // clearInterval(interval)
+    // interval = setInterval(() => {
+    //   fetchMessages()
+    // }, 3000)
   }, []);
   console.log(allMessages)
   return (
