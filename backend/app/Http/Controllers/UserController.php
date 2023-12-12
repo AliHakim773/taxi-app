@@ -31,37 +31,39 @@ class UserController extends Controller
     {
         $this->authorize('driver');
         $user = Auth::user();
-        return response()->json([
-            'status' => 'yoo',
-            'message' => 'pfp',
-            'user' => $user,
-        ]);
+        // cant use $user->save() or any otger method unless I do this
+        $user = User::find($user->id);
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
-            'phone_number' => 'required|string|min:3',
+            'phone_number' => 'required|integer|min:3',
             'location' => 'required|string',
             'img_url' => 'string|img_url',
             'model' => 'required|string',
             'color' => 'required|string',
             'plate_number' => 'required|string',
         ]);
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->phone_number = $request->phone_number;
         $user->location = $request->location;
         $user->img_url = $request->img_url ?? 'defualt';
-        $user->color = $request->color;
-        $user->model = $request->model;
-        $user->plate_number = $request->plate_number;
-        $user->request_status = 'pending';
+
+        $user->save();
+
+        $user->driver->car->color = $request->color;
+        $user->driver->car->model = $request->model;
+        $user->driver->car->plate_number = $request->plate_number;
+
+        $user->driver->car->save();
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Request is now pending',
-            'user' => $user,
+            'message' => 'Profile Edited Successfuly',
         ]);
     }
 }
