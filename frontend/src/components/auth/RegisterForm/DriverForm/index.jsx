@@ -113,7 +113,7 @@ const DriverForm = () => {
                 />
                 <InputField
                     text={"Plate Number"}
-                    type={"number"}
+                    type={"text"}
                     name={"plate_number"}
                     value={values.plate_number}
                     handleChange={HandleOnInputChange}
