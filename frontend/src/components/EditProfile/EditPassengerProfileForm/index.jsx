@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import defaultPic from "../../../assets/images/Default_pfp.jpg"
 import InputField from "../../common/InputField"
 import Button from "../../common/Button"
