@@ -6,9 +6,11 @@ function App() {
   return (
     <div className="page">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Login />} />
-      </Routes>
+      <div>
+        <Routes>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </div>
     </div>
   );
 }

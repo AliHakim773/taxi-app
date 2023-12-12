@@ -4,10 +4,10 @@
   padding: 40px 40px 20px 40px;
   display: flex;
   flex-direction: column;
-  margin: 40px;
+  margin-bottom: 100px;
 }
 .form-title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
   color: black;
   margin-bottom: 15px;
@@ -24,10 +24,5 @@
 .btn-wrapper p {
   padding-left: 3px;
   margin-top: 5px;
-  font-size: 12px;
-}
-
-.admin-login {
-  background-color: aliceblue;
   font-size: 12px;
 }

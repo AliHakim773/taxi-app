@@ -1,20 +1,21 @@
 .navbar {
-  height: 80px;
+  height: 7vh;
   justify-content: space-between;
-  padding: 30px;
+  padding: 10px 20px;
   box-shadow: 5px 2px 2px rgb(135, 135, 135);
+  align-items: center;
 }
 
-.profile {
-  gap: 20px;
+.navbar h1 {
+  margin-left: 40px;
 }
-
 .profile p {
   font-size: 24px;
   font-weight: 500;
+  padding-right: 20px;
 }
 
 .profile img {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
 }
