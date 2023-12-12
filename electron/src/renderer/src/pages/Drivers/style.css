@@ -1,0 +1,22 @@
+table,
+td {
+  border: 1px solid #333;
+}
+table {
+  width: 100%; /* Set the table width to fill its container */
+  table-layout: auto; /* Allow the column widths to be based on content */
+  border-collapse: collapse; /* Optional: Merge table borders */
+}
+thead,
+tfoot {
+  background-color: #333;
+  color: #fff;
+}
+
+.drivers-content {
+  width: 100%;
+}
+
+.accept-btn {
+  width: 60px;
+}

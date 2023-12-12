@@ -42,6 +42,17 @@
   font-size: 30px;
 }
 
-.body {
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 100px;
+  right: 0;
+  position: absolute;
+  width: 85%;
+}
+
+.content {
+  position: relative;
+  top: 7vh;
   display: flex;
 }

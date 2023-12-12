@@ -25,7 +25,7 @@ const LoginForm = () => {
         localStorage.setItem("token", `Bearer ${res.authorisation.token}`);
         console.log(res.user);
         dispatch(setUser(res.user));
-        navigate("/ab");
+        navigate("/drivers");
       }
       console.log(res);
     } catch (err) {
@@ -57,14 +57,13 @@ const LoginForm = () => {
               HandleOnInputChange(e);
             }}
           />
+
+          <Link to={"/forgotpassword"} className="forgot-pass">
+            Forgot Password?.
+          </Link>
         </div>
         <div className="btn-wrapper">
-          <Button className="admin-login" text={"Login"} handleOnClick={handleLogin} type={"submit"} />
-
-          <p>
-            Don't have an account?
-            <Link to={"/register"}>Register here.</Link>
-          </p>
+          <Button text={"Login"} handleOnClick={handleLogin} type={"submit"} />
         </div>
       </div>
     </form>

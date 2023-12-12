@@ -8,14 +8,18 @@ import PfpDropDown from "./PfpDropDown";
 
 const Navbar = () => {
   const location = useLocation();
-  const [display, setDisplay] = useState(true);
+  const [display, setDisplay] = useState(false);
   const dispatch = useDispatch();
   const userState = useSelector(extractUserSlice);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
   useEffect(() => {
+    if (location.pathname != "/") {
+      setDisplay(true);
+    } else setDisplay(false);
     const token = localStorage.getItem("token");
     const header = {
-      Authoruzation: token,
+      Authorization: token,
     };
 
     if (!token) {
@@ -23,23 +27,19 @@ const Navbar = () => {
       setIsLoggedIn(false);
       return;
     }
-
     const refresh = async () => {
       try {
         const res = await requestData("refresh", "post", {}, header);
         if (res.status == "success") {
-          localStorage.setItem("token", `Bearer ${res.authoruzation.token}`);
+          localStorage.setItem("token", `Bearer ${res.authorisation.token}`);
           dispatch(setUser(res.user));
           setIsLoggedIn(true);
         }
-        console.log(res);
       } catch (err) {
         console.log(err);
       }
     };
-    if (location.pathname == "/") {
-      setDisplay(false);
-    } else setDisplay(true);
+    refresh();
   }, [location.pathname]);
 
   const handleOnClickProfile = () => {
@@ -50,14 +50,8 @@ const Navbar = () => {
       <h1>Taxi Driver</h1>
       <div className="flex center profile">
         <p>{userState.name}</p>
-        <img
-          src=""
-          alt=""
-          onClick={(e) => {
-            handleOnClickProfile(e);
-          }}
-        />
-        {/* <PfpDropDown isHidden={isHidden} setIsLoggedIn={setIsLoggedIn} /> */}
+        <img src="" alt="" onClick={handleOnClickProfile} />
+        <PfpDropDown isHidden={isHidden} setIsLoggedIn={setIsLoggedIn} />
       </div>
     </div>
   ) : (
