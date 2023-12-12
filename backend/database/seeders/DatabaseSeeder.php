@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\ChatRoom;
+use App\Models\ChatMessages;
 use App\Models\Drivers;
 use App\Models\Role;
 use App\Models\User;
@@ -80,17 +80,25 @@ class DatabaseSeeder extends Seeder
             'img_url' => 'img.png',
             'phone_number' => 12355,
         ]);
-        ChatRoom::create([
-            'sender_id' => 1,
-            'receiver_id' => 2,
+        ChatMessages::create([
+            'sender_id'=>1,
+            'receiver_id'=>2,
+            "content"=>"Hello team leader ali"
         ]);
-        ChatRoom::create([
-            'sender_id' => 2,
-            'receiver_id' => 3,
+        ChatMessages::create([
+            'sender_id'=>1,
+            'receiver_id'=>3,
+            "content"=>"Hello team leader ali"
         ]);
-        ChatRoom::create([
-            'sender_id' => 3,
-            'receiver_id' => 4,
+        ChatMessages::create([
+            'sender_id'=>1,
+            'receiver_id'=>4,
+            "content"=>"Hello team leader ali"
+        ]);
+        ChatMessages::create([
+            'sender_id'=>2,
+            'receiver_id'=>1,
+            "content"=>"Hello team leader ali"
         ]);
     }
 }

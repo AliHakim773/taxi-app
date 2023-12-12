@@ -7,6 +7,7 @@ use App\Models\ChatRoom;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -25,12 +26,6 @@ public function getAllMessages(){
     $userId = $request->input('userId');
     $content = $request->input('content');
     $roomId=$request->input('chatRoomId');
-    $room=ChatRoom::where('id',$roomId)->first();
-    if(!$room){
-        return response()->json([
-            'error'=>"Room doesn't exist"
-        ]);
-    }else{
         $user=User::where('id',$userId)->first();
         if(!$user){
             return response()->json([
@@ -44,6 +39,21 @@ public function getAllMessages(){
         $message->save();
         return response()->json(['message'=>"Message created"])
             ->header('Access-Control-Allow-Origin', '*');
+}
+    public function getUsersMessages(){
+        //userid => bdi jib kl l messages
+        //we get the userid from the token
+        $user=Auth::user();//authenticated user 
+        $userId=$user->id;
+        $senderMessages=ChatMessages::where('sender_id',$userId)->where('receiver_id',2)->get();//get all
+        $receiverMessages=ChatMessages::where('receiver_id',$userId)->where('sender_id',2)->get();//get all
+        // $messages=$user->sentMessages;
+        return response()->json([
+            'sender messages'=>$senderMessages,
+            'receiver messages'=>$receiverMessages
+        ]);
     }
 }
-}
+
+//php artisan migrate:fresh
+//php artisan db:seed
