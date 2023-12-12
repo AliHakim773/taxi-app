@@ -55,7 +55,7 @@ public function getAllMessages(){
             'receiver messages'=>$receiverMessages,
             'all messages'=>$allMessages,
             'sorted messages'=>$allMessagesSorted
-        ]);
+        ])->header('Access-Control-Allow-Origin', '*');
     }
 }
 
