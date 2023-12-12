@@ -7,8 +7,8 @@ export const ViewDriver = () => {
   return (
     <div className="content-container">
       {" "}
-      <button className="back" onClick={goBack}>
-        Go Back
+      <button className="previous" onClick={goBack}>
+        &#8249;
       </button>
     </div>
   );
