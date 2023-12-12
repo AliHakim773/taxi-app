@@ -21,13 +21,58 @@ const EditPassengerProfileForm = () => {
         phone_number: "",
     })
 
-    useEffect(() => {}, [])
+    const token = localStorage.getItem("token")
+    const headers = {
+        Authorization: token,
+    }
+    if (!token) {
+        navigate("/")
+    }
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            Authorization: token,
+        }
+        if (!token) {
+            navigate("/")
+        }
+
+        const getUser = async () => {
+            try {
+                const res = await requestData("get_user", "get", {}, headers)
+                if (res.status == "success") {
+                    setValues({
+                        name: res.user.name,
+                        email: res.user.email,
+                        password: "",
+                        confirmPassword: "",
+                        location: res.user.location,
+                        phone_number: res.user.phone_number,
+                    })
+                }
+            } catch (err) {
+                setError({
+                    msg: "Something went Wrong",
+                    status: true,
+                })
+            }
+        }
+        getUser()
+    }, [])
 
     const HandleOnInputChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
 
     const handleEdit = async () => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            Authorization: token,
+        }
+        if (!token) {
+            navigate("/")
+        }
         if (values.confirmPassword !== values.password) {
             setError({
                 msg: "passwords doesnt match",
@@ -36,15 +81,14 @@ const EditPassengerProfileForm = () => {
             return
         }
         try {
-            const res = await requestData("edit_passenger", "post", values)
-            console.log(res)
+            const res = await requestData(
+                "edit_passenger",
+                "post",
+                values,
+                headers
+            )
             if (res.status == "success") {
-                localStorage.setItem(
-                    "token",
-                    `Bearer ${res.authorisation.token}`
-                )
                 dispatch(setUser(res.user))
-                navigate("/")
             }
         } catch (err) {
             setError({

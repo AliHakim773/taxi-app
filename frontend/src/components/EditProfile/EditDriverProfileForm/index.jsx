@@ -24,9 +24,49 @@ const EditDriverProfileForm = () => {
         plate_number: "",
     })
 
-    useEffect(() => {}, [])
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            Authorization: token,
+        }
+        if (!token) {
+            navigate("/")
+        }
+
+        const getUser = async () => {
+            try {
+                const res = await requestData("get_user", "get", {}, headers)
+                if (res.status == "success") {
+                    setValues({
+                        name: res.user.name,
+                        email: res.user.email,
+                        password: "",
+                        confirmPassword: "",
+                        location: res.user.location,
+                        phone_number: res.user.phone_number,
+                        model: res.car.model,
+                        color: res.car.color,
+                        plate_number: res.car.plate_number,
+                    })
+                }
+            } catch (err) {
+                setError({
+                    msg: "Something went Wrong",
+                    status: true,
+                })
+            }
+        }
+        getUser()
+    }, [])
 
     const handleEdit = async () => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            Authorization: token,
+        }
+        if (!token) {
+            navigate("/")
+        }
         if (values.confirmPassword !== values.password) {
             setError({
                 msg: "passwords doesnt match",
@@ -34,16 +74,16 @@ const EditDriverProfileForm = () => {
             })
             return
         }
+        console.log(values)
         try {
-            const res = await requestData("edit_driver", "post", values)
-            console.log(res)
+            const res = await requestData(
+                "edit_driver",
+                "post",
+                values,
+                headers
+            )
             if (res.status == "success") {
-                localStorage.setItem(
-                    "token",
-                    `Bearer ${res.authorisation.token}`
-                )
                 dispatch(setUser(res.user))
-                navigate("/")
             }
         } catch (err) {
             setError({
@@ -77,7 +117,7 @@ const EditDriverProfileForm = () => {
                         />
                     </div>
                 </div>
-                <div className='edit-role'>Passenger</div>
+                <div className='edit-role'>Driver</div>
             </div>
             <div className='profile-body'>
                 <div className='editform-pair'>
