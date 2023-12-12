@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatRoomController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Event\Code\TestCollectionIterator;
@@ -29,11 +30,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
-Route::controller(MessageController::class)->group(function(){
-    Route::get('getMessages',"getAllMessages");
-    Route::post('createMessage','createMessage');
+Route::controller(MessageController::class)->group(function () {
+    Route::get('getMessages', "getAllMessages");
+    Route::post('createMessage', 'createMessage');
 });
-Route::controller(ChatRoomController::class)->group(function(){
-    Route::get("getRooms",'getAllRooms');
-    Route::post('createRoom','createRoom');
+Route::controller(ChatRoomController::class)->group(function () {
+    Route::get("getRooms", 'getAllRooms');
+    Route::post('createRoom', 'createRoom');
 });
+Route::controller(UserController::class)->group((function () {
+    Route::post('edit_driver', 'edit_driver');
+}));
