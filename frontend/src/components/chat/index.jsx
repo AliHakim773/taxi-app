@@ -3,7 +3,7 @@ import Input from '../input'
 import MessagesContainer from '../messagesContainer'
 import { ReactComponent as SendLogo } from '../../assets/svg/sendLogo.svg'
 import './style.css'
-const Chat = () => {
+const Chat = ({ messages, roleId }) => {
   return (
     <div className="chat">
       <header>

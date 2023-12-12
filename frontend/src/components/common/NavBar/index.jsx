@@ -18,13 +18,11 @@ const NavBar = () => {
         const headers = {
             Authorization: token,
         }
-
         if (!token) {
             console.error("Token not available")
             setIsLoggedIn(false)
             return
         }
-
         const refresh = async () => {
             try {
                 const res = await requestData("refresh", "post", {}, headers)
@@ -95,6 +93,9 @@ const NavBar = () => {
                             </li>
                         </>
                     )}
+                    <li>
+                        <Link to={"/chatroom"} className='nav-item' >ChatRoom</Link>
+                    </li>
                 </ul>
             </div>
         </nav>

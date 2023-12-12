@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom"
 import Login from "./pages/Login"
 import LandingPage from "./pages/LandingPage"
 import Register from "./pages/Register"
-import ChatRoom from "./pages/ChatRoom"
+import ChatRoom from "./pages/ChatRoom/chatroom.component"
 function App() {
     return (
         <div className='app'>
