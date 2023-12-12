@@ -1,7 +1,6 @@
 .map-container {
   margin-top: 3rem;
-  max-width: 50%;
-  margin: 0 auto;
+  width: 100%;
   display: block;
 }
 .button-container {
