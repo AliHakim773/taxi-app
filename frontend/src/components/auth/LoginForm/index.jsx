@@ -30,13 +30,11 @@ const LoginForm = () => {
                 dispatch(setUser(res.user))
                 navigate("/")
             }
-            console.log(res)
         } catch (err) {
             setError({
                 msg: "Wrong Credentials",
                 status: true,
             })
-            console.log(error)
         }
     }
 
