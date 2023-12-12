@@ -13,3 +13,8 @@
 .input-container input:focus::placeholder {
   opacity: 0;
 }
+
+button {
+  background: none;
+  border: none;
+}
