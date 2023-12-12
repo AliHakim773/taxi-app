@@ -29,12 +29,14 @@ export const Drivers = () => {
     alert("Driver Accepted");
   };
   return (
-    <div>
+    <div className="content-container">
       <h1>Drivers</h1>
       <table>
         <thead>
           <tr>
-            <th colspan="80">The table header</th>
+            <th className="table-header" colspan="7">
+              Potential Driver Requests
+            </th>
           </tr>
           <tr>
             <th>Driver</th>
@@ -43,21 +45,24 @@ export const Drivers = () => {
             <th>Car</th>
             <th>Color</th>
             <th>Plate</th>
-            <th>ٍStatus</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {users.map((driver, index) => (
             <tr key={index}>
-              <td>{driver.name}</td>
+              <td className="img-name">
+                <img src="" alt="" />
+                {driver.name}
+              </td>
               <td>{driver.email}</td>
               <td>{driver.location}</td>
               <td>{driver.car}</td>
               <td>{driver.color}</td>
               <td>{driver.plateNumber}</td>
-              <td>
-                <Button className="accept-btn" text={"Accept"} handleOnClick={() => handleAccept()} type={"submit"} />
-                <Button className="accept-btn" text={"Accept"} handleOnClick={() => handleAccept()} type={"submit"} />
+              <td className="status flex">
+                <Button text={"Accept"} handleOnClick={() => handleAccept()} type={"submit"} className="accept-btn" />
+                <Button className={"accept-btn"} text={"Deny"} handleOnClick={() => handleAccept()} type={"submit"} />
               </td>
             </tr>
           ))}
