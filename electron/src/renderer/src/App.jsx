@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/drivers" element={<Drivers />} />
-            <Route path="/viewDriver" element={<ViewDriver />} />
+            <Route path="/viewdriver/:id" element={<ViewDriver />} />
             {/* <Route path="/passengers" element={<Passengers />} />
           <Route path="/analytics" element={<Analytics />} /> */}
           </Routes>
