@@ -41,4 +41,5 @@ Route::controller(ChatRoomController::class)->group(function () {
 Route::controller(UserController::class)->group((function () {
     Route::get('get_user', 'get_user');
     Route::post('edit_driver', 'edit_driver');
+    Route::post('edit_passenger', 'edit_passenger');
 }));
