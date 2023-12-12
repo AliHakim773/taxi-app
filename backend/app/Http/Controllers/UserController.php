@@ -25,6 +25,10 @@ class UserController extends Controller
                 'car' => $user->driver->car
             ]);
         }
+        return response()->json([
+            'status' => 'success',
+            'user' => $user,
+        ]);
     }
 
     public function edit_driver(Request $request)
@@ -64,6 +68,7 @@ class UserController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Profile Edited Successfuly',
+            'user' => $user
         ]);
     }
 }
