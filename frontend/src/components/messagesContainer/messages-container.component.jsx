@@ -1,18 +1,21 @@
 
 import { getMessages } from "../../core/axios"
 import { useEffect, useState } from "react"
-
+import { extractMessagesSlice, setMessages } from "../../core/redux/messages/messagesSlice"
+import { useDispatch, useSelector } from "react-redux"
 import './style.css'
 import Message from "../message/message.component"
 const MessagesContainer = ({ userId }) => {
-
-  const [messages, setMessages] = useState([])
+  let dispatch = useDispatch()
+  const { allMessages } = useSelector(extractMessagesSlice)
+  console.log('Component re rendered')
   let timeout = 0, interval = 0
   useEffect(() => {
+    console.log('component mounted')
     async function fetchMessages() {
       try {
-        const messages = await getMessages('getMessages', 'GET');
-        setMessages(messages.messages)
+        const data = await getMessages('getMessages', 'GET');
+        dispatch(setMessages({ allMessages: data.messages }))
       } catch (error) {
         console.log(error)
       }
@@ -26,7 +29,7 @@ const MessagesContainer = ({ userId }) => {
   return (
     <div className="messages-container">
       {
-        messages.map(message => {
+        allMessages.map(message => {
           return <Message key={message.id} userId={userId} message={message} />
         })
       }

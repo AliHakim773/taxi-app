@@ -17,7 +17,6 @@ const Chat = () => {
       </div>
       <div className="input-container">
         <Input userId={userState.id} />
-
       </div>
     </div>
   )
