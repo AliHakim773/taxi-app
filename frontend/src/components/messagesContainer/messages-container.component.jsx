@@ -14,8 +14,10 @@ const MessagesContainer = ({ userId }) => {
     console.log('component mounted')
     async function fetchMessages() {
       try {
-        const data = await getMessages('getMessages', 'GET');
-        dispatch(setMessages({ allMessages: data.messages }))
+        const headers = { Authorization: localStorage.getItem('token') }
+        // console.log(headers)
+        const data = await getMessages('getUsersMessages', 'GET', null, headers);
+        dispatch(setMessages({ allMessages: data['sorted messages'] }))
       } catch (error) {
         console.log(error)
       }
@@ -26,6 +28,7 @@ const MessagesContainer = ({ userId }) => {
       fetchMessages()
     }, 3000)
   }, []);
+  console.log(allMessages)
   return (
     <div className="messages-container">
       {

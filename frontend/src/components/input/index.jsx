@@ -12,15 +12,16 @@ const Input = ({ userId }) => {
   }
   async function createMessage() {
     try {
-      const response = await postMessage(`createMessage`, 'POST', { content: inputValue, chatRoomId: 3, userId })
+      const response = await postMessage(`createMessage`, 'POST', { content: inputValue, receiverId: 2, senderId: userId })
     } catch (error) {
       console.log(error)
     }
   }
   async function fetchMessages() {
     try {
-      const data = await getMessages('getMessages', 'GET');
-      dispatch(setMessages({ allMessages: data.messages }))
+      const headers = { Authorization: localStorage.getItem('token') }
+      const data = await getMessages('getUsersMessages', 'GET', null, headers);
+      dispatch(setMessages({ allMessages: data['sorted messages'] }))
     } catch (error) {
       console.log(error)
     }

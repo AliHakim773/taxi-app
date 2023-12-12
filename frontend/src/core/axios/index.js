@@ -25,6 +25,7 @@ export const getMessages = async (route, method, data = null, headers = {}) => {
                 ...headers,
             },
         });
+        console.log(response.data)
         return response.data; // Return the data from the function
     } catch (error) {
         console.error('Error in getMessages:', error);

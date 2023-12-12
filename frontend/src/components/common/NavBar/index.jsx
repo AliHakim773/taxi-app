@@ -27,10 +27,6 @@ const NavBar = () => {
             try {
                 const res = await requestData("refresh", "post", {}, headers)
                 if (res.status == "success") {
-                    localStorage.setItem(
-                        "token",
-                        `Bearer ${res.authorisation.token}`
-                    )
                     dispatch(setUser(res.user))
                     setIsLoggedIn(true)
                 }
