@@ -1,12 +1,9 @@
-.register-form {
-    border-radius: 0 30px 30px 30px;
-    box-shadow: 0 0 40px 5px rgba(0, 0, 0, 0.1);
-    padding: 30px 40px;
+.profile-body {
     display: flex;
     flex-direction: column;
-    margin: 170px 50px 120px 50px;
-    /* height: ; */
     position: relative;
+    margin-top: 2rem;
+    gap: 1rem;
 }
 .form-title {
     font-size: 26px;
@@ -65,7 +62,7 @@ span {
     align-items: flex-start;
     gap: 20px;
 }
-.registerform-pair {
+.editform-pair {
     display: flex;
     gap: 70px;
 }
@@ -73,9 +70,4 @@ span {
     align-self: center;
     margin-top: 30px;
     width: 400px;
-}
-.submit-btn-wrapper p {
-    margin-top: 10px;
-    font-size: 12px;
-    padding-left: 5px;
 }
