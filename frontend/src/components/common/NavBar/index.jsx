@@ -18,7 +18,6 @@ const NavBar = () => {
         const headers = {
             Authorization: token,
         }
-        console.log(userState.role_id, "hello")
         if (!token) {
             setIsLoggedIn(false)
             return
