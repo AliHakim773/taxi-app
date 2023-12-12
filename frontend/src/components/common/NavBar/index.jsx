@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
-import "./styles.css"
 import { Link } from "react-router-dom"
 import PfpDropDown from "./PfpDropDown"
 import { useDispatch, useSelector } from "react-redux"
 import { extractUserSlice, setUser } from "../../../core/redux/user/userSlice"
 import { requestData } from "../../../core/axios"
+import "./styles.css"
 
 const NavBar = () => {
     const dispatch = useDispatch()
@@ -19,7 +19,6 @@ const NavBar = () => {
             Authorization: token,
         }
         if (!token) {
-            console.error("Token not available")
             setIsLoggedIn(false)
             return
         }
@@ -30,10 +29,7 @@ const NavBar = () => {
                     dispatch(setUser(res.user))
                     setIsLoggedIn(true)
                 }
-                console.log(res)
-            } catch (err) {
-                console.log(err)
-            }
+            } catch (err) {}
         }
         refresh()
     }, [])
@@ -52,9 +48,18 @@ const NavBar = () => {
                             Home
                         </Link>
                     </li>
-                    <li>
-                        <Link className='nav-item'>Call A Ride</Link>
-                    </li>
+                    {userState.role_id === 2 || userState.role_id === 1 ? (
+                        <li>
+                            <Link className='nav-item'>Call A Ride</Link>
+                        </li>
+                    ) : userState.role_id === 3 ? (
+                        <li>
+                            <Link className='nav-item'>Start Working</Link>
+                        </li>
+                    ) : (
+                        ""
+                    )}
+
                     <li>
                         <Link className='nav-item'>Contact Us</Link>
                     </li>

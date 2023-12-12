@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DriverRegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register_passenger', 'register_driver']]);
     }
 
     public function login(Request $request)
@@ -42,19 +43,26 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function register_passenger(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+            'phone_number' => 'required|string|min:3',
+            'location' => 'required|string',
+            'img_url' => 'string|img_url',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->phone_number = $request->phone_number;
+        $user->location = $request->location;
+        $user->img_url = $request->img_url ?? 'defualt';
+        $user->role_id = 2;
+        $user->save();
 
         $token = Auth::login($user);
         return response()->json([
@@ -65,6 +73,39 @@ class AuthController extends Controller
                 'token' => $token,
                 'type' => 'bearer',
             ]
+        ]);
+    }
+    public function register_driver(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'phone_number' => 'required|string|min:3',
+            'location' => 'required|string',
+            'img_url' => 'string|img_url',
+            'model' => 'required|string',
+            'color' => 'required|string',
+            'plate_number' => 'required|string',
+        ]);
+        $user = new DriverRegisterRequest();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->phone_number = $request->phone_number;
+        $user->location = $request->location;
+        $user->img_url = $request->img_url ?? 'defualt';
+        $user->color = $request->color;
+        $user->model = $request->model;
+        $user->plate_number = $request->plate_number;
+        $user->request_status = 'pending';
+
+        $user->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Request is now pending',
+            'user' => $user,
         ]);
     }
 

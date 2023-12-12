@@ -4,13 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\ChatMessages;
-use App\Models\Drivers;
+use App\Models\Car;
+use App\Models\Driver;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use SebastianBergmann\CodeCoverage\Driver\Driver;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,9 +31,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Admin',
             'role_id' => 1,
-            'email' => 'test@example.com',
+            'email' => 'admin@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
             'img_url' => 'img.png',
@@ -42,9 +41,9 @@ class DatabaseSeeder extends Seeder
 
         ]);
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Driver 1',
             'role_id' => 3,
-            'email' => 'test1@example.com',
+            'email' => 'driver1@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
             'img_url' => 'img.png',
@@ -52,9 +51,9 @@ class DatabaseSeeder extends Seeder
 
         ]);
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Driver 2',
             'role_id' => 3,
-            'email' => 'test2@example.com',
+            'email' => 'driver2@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
             'img_url' => 'img.png',
@@ -62,9 +61,9 @@ class DatabaseSeeder extends Seeder
 
         ]);
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Passenger 1',
             'role_id' => 2,
-            'email' => 'test3@example.com',
+            'email' => 'passenger1@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
             'img_url' => 'img.png',
@@ -72,33 +71,33 @@ class DatabaseSeeder extends Seeder
 
         ]);
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Passenger 2',
             'role_id' => 2,
-            'email' => 'test4@example.com',
+            'email' => 'passenger2@example.com',
             'password' => Hash::make('password'),
             'location' => 'somewhere',
             'img_url' => 'img.png',
             'phone_number' => 12355,
         ]);
-        ChatMessages::create([
-            'sender_id'=>1,
-            'receiver_id'=>2,
-            "content"=>"Hello team leader ali"
+        Driver::create([
+            'user_id' => 2,
+            'availability' => 'active'
         ]);
-        ChatMessages::create([
-            'sender_id'=>1,
-            'receiver_id'=>3,
-            "content"=>"Hello team leader ali"
+        Driver::create([
+            'user_id' => 3,
+            'availability' => 'non_active'
         ]);
-        ChatMessages::create([
-            'sender_id'=>1,
-            'receiver_id'=>4,
-            "content"=>"Hello team leader ali"
+        Car::create([
+            'driver_id' => 1,
+            'model' => 'A1',
+            'color' => 'red',
+            'plate_number' => 'yolomolo'
         ]);
-        ChatMessages::create([
-            'sender_id'=>2,
-            'receiver_id'=>1,
-            "content"=>"Hello team leader ali"
+        Car::create([
+            'driver_id' => 2,
+            'model' => 'B2',
+            'color' => 'white',
+            'plate_number' => 'Nadim'
         ]);
     }
 }

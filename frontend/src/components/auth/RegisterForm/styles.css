@@ -1,3 +1,10 @@
+.profile-body {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 2rem;
+    gap: 1rem;
+}
 .register-form {
     border-radius: 0 30px 30px 30px;
     box-shadow: 0 0 40px 5px rgba(0, 0, 0, 0.1);
@@ -65,6 +72,7 @@ span {
     align-items: flex-start;
     gap: 20px;
 }
+.editform-pair,
 .registerform-pair {
     display: flex;
     gap: 70px;
@@ -73,9 +81,4 @@ span {
     align-self: center;
     margin-top: 30px;
     width: 400px;
-}
-.submit-btn-wrapper p {
-    margin-top: 10px;
-    font-size: 12px;
-    padding-left: 5px;
 }
