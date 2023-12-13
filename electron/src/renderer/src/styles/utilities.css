@@ -56,6 +56,7 @@
   position: relative;
   top: 7vh;
   display: flex;
+  height: 92vh;
 }
 
 .page {

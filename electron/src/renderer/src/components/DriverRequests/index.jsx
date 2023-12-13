@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../common/Button";
 import { drivers } from "../../core/mockData";
-import "./style.css";
 export const DriverRequests = () => {
   const [users, setUsers] = useState([]);
   const handleAccept = () => {

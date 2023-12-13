@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
-export const AnalyticCart = ({ title, percent, amount }) => {
+export const AnalyticCart = ({ className, title, percent, amount }) => {
   return (
-    <div className="card flex column">
+    <div className="card flex column ">
       <div className="card-top flex">
-        <h3>{title}</h3>
+        <h3 className={className}>{title}</h3>
         <p>{percent}</p>
       </div>
       <p>{amount}</p>

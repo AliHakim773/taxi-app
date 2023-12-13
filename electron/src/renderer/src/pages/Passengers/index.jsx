@@ -3,7 +3,7 @@ import "./style.css";
 import { useLocation } from "react-router-dom";
 import { DriverRequests } from "../../components/DriverRequests";
 import { CurrentUsersTable } from "../../components/CurrentUsersTable";
-export const Drivers = () => {
+export const Passengers = () => {
   const location = useLocation();
   const [users, setUsers] = useState([]);
 
@@ -23,8 +23,7 @@ export const Drivers = () => {
 
   return (
     <div className="content-container">
-      <h1>Drivers</h1>
-      <DriverRequests />
+      <h1>Passengers</h1>
       <CurrentUsersTable />
     </div>
   );

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Button from "../common/Button";
 import { drivers } from "../../core/mockData";
-import "./style.css";
 import { useNavigate } from "react-router";
-export const CurrentDriversTable = () => {
+import { useLocation } from "react-router-dom";
+export const CurrentUsersTable = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [page, setPage] = useState("");
 
   useEffect(() => {
     setUsers(drivers);
@@ -18,6 +20,11 @@ export const CurrentDriversTable = () => {
       console.error("Token not available");
       setIsLoggedIn(false);
       return;
+    }
+    if (location.pathname == "/drivers") {
+      setPage("drivers");
+    } else if (location.pathname == "/passengers") {
+      setPage("passengers");
     }
   }, [location.pathname]);
   return (
@@ -33,7 +40,7 @@ export const CurrentDriversTable = () => {
           <th>Id</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Car</th>
+          {page === "drivers" && <th>Car</th>}
           <th></th>
         </tr>
       </thead>
@@ -44,11 +51,13 @@ export const CurrentDriversTable = () => {
             <td>{driver.Id}</td>
             <td>{driver.name}</td>
             <td>{driver.email}</td>
-            <td>{driver.car}</td>
+            {page === "drivers" && <td>{driver.car}</td>}
             <td className="status flex">
               <Button
                 text={"View"}
-                handleOnClick={() => navigate(`/viewDriver/${driver.Id}`)}
+                handleOnClick={() => {
+                  page === "drivers" ? navigate(`/viewDriver/${driver.Id}`) : navigate(`/viewPassenger/${driver.Id}`);
+                }}
                 type={"submit"}
                 className="accept-btn"
               />
