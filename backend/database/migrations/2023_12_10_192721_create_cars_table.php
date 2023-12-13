@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('driver_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->string('model');
+            $table->integer('model');
             $table->string('color');
             $table->string('plate_number');
             $table->timestamps();

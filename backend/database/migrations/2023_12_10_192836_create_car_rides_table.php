@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('to_lat');
             $table->string('price');
             $table->integer('rate')->nullable();
-            $table->integer('duration');
-            $table->enum('status', ['pending', 'accepted', 'finished', 'canceled', 'denied']);
+            $table->string('duration');
+            $table->enum('status', ['pending', 'accepted', 'finished', 'denied']);
             $table->timestamps();
         });
     }

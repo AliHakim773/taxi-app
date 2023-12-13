@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('phone_number');
-            $table->string('location');
+            $table->enum('location', ['beirut', 'tripoli', 'batroun', 'sayda', 'chouf', 'south']);
             $table->string('img_url');
             $table->string('car_name');
             $table->string('model');
