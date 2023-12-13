@@ -40,6 +40,10 @@ const DriverForm = () => {
         try {
             const res = await requestData("register_driver", "post", values)
             if (res.status == "success") {
+                Notification.requestPermission().then((perm) => {
+                    if (perm === "granted")
+                        new Notification("Your request is now pending")
+                })
                 navigate("/")
             }
         } catch (err) {
