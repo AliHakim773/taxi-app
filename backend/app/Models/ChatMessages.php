@@ -10,12 +10,14 @@ class ChatMessages extends Model
 {
     use HasFactory;
 
-    public function chat_room(): BelongsTo
-    {
-        return $this->belongsTo(ChatRoom::class);
-    }
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function sender(): BelongsTo{
+        return $this->belongsTo(User::class,'sender_id');
+    }
+    public function receiver():BelongsTo{
+        return $this->belongsTo(User::class,'receiver_id');
     }
 }

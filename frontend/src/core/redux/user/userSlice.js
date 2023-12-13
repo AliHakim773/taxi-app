@@ -6,14 +6,14 @@ const initialState = {
     role_id: "",
     img_url: "",
 }
-
 export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
         setUser(state, action) {
-            const { name, email, role_id, img_url } = action.payload
+            const { id, name, email, role_id, img_url } = action.payload
             return {
+                id,
                 name,
                 email,
                 role_id,
@@ -22,6 +22,7 @@ export const userSlice = createSlice({
         },
         clearUser(state, action) {
             return {
+                id: '',
                 name: "",
                 email: "",
                 role_id: "",
@@ -32,11 +33,8 @@ export const userSlice = createSlice({
 })
 
 export const { setUser, clearUser } = userSlice.actions
-
 export const user = userSlice.name
-
 export default userSlice.reducer
-
 export const extractUserSlice = (global) => {
     return global[user]
 }

@@ -22,7 +22,6 @@ const NavBar = () => {
             setIsLoggedIn(false)
             return
         }
-
         const refresh = async () => {
             try {
                 const res = await requestData("refresh", "post", {}, headers)
@@ -30,7 +29,7 @@ const NavBar = () => {
                     dispatch(setUser(res.user))
                     setIsLoggedIn(true)
                 }
-            } catch (err) {}
+            } catch (err) { }
         }
         refresh()
     }, [])
@@ -98,6 +97,12 @@ const NavBar = () => {
                             </li>
                         </>
                     )}
+                    <li>
+                        <Link to={"/chatroom"} className='nav-item' >ChatRoom</Link>
+                    </li>
+                    <li>
+                        <Link to={'/contact'} className="nav-item">Contact us</Link>
+                    </li>
                 </ul>
             </div>
         </nav>
