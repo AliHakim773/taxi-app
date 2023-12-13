@@ -6,9 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\DriversController;
 use App\Http\Controllers\RideController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use PHPUnit\Event\Code\TestCollectionIterator;
 
 /*
 |--------------------------------------------------------------------------
