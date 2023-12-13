@@ -7,6 +7,9 @@ import LandingPage from "./pages/LandingPage"
 import Register from "./pages/Register"
 import ChatRoom from "./pages/ChatRoom/chatroom.component"
 import EditProfile from "./pages/EditProfile"
+import DriverPage from "./pages/DriverPage"
+import CustomerPage from "./pages/CustomerPage"
+
 function App() {
     return (
         <div className='app'>
@@ -16,7 +19,9 @@ function App() {
                 <Route path='/register' element={<Register />} />
                 <Route path='/chatroom' element={<ChatRoom />} />
                 <Route path='/edit-profile' element={<EditProfile />} />
-                <Route path="/contact" element={<ChatRoom />} />
+                <Route path='/contact' element={<ChatRoom />} />
+                <Route path='/customer' element={<CustomerPage />} />
+                <Route path='/driver' element={<DriverPage />} />
             </Routes>
         </div>
     )
