@@ -59,5 +59,6 @@ Route::prefix('admin/')->group((function () {
         Route::get('get_driver_registration_requests', 'getDriverRegisterRequests');
         Route::get('get_all_drivers', 'getAllDrivers');
         Route::get('get_all_passengers', 'getAllPassengers');
+        Route::post('approve', 'approve');
     }));
 }));
