@@ -1,32 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Button from "../common/Button";
-import { drivers } from "../../core/mockData";
 import { useNavigate } from "react-router";
-import { useLocation } from "react-router-dom";
-export const CurrentUsersTable = () => {
-  const location = useLocation();
+export const CurrentUsersTable = ({ users, user_role }) => {
   const navigate = useNavigate();
-  const [users, setUsers] = useState([]);
-  const [page, setPage] = useState("");
-
   useEffect(() => {
-    setUsers(drivers);
-    const token = localStorage.getItem("token");
-    const header = {
-      Authorization: token,
-    };
+    console.log(users);
+  }, []);
 
-    if (!token) {
-      console.error("Token not available");
-      setIsLoggedIn(false);
-      return;
-    }
-    if (location.pathname == "/drivers") {
-      setPage("drivers");
-    } else if (location.pathname == "/passengers") {
-      setPage("passengers");
-    }
-  }, [location.pathname]);
   return (
     <table>
       <thead>
@@ -40,33 +20,28 @@ export const CurrentUsersTable = () => {
           <th>Id</th>
           <th>Name</th>
           <th>Email</th>
-          {page === "drivers" && <th>Car</th>}
+          {user_role === "driver" && <th>Car</th>}
           <th></th>
         </tr>
       </thead>
       <tbody>
-        {users.map((driver, index) => (
+        {users.map((user, index) => (
           <tr key={index}>
             <td></td>
-            <td>{driver.Id}</td>
-            <td>{driver.name}</td>
-            <td>{driver.email}</td>
-            {page === "drivers" && <td>{driver.car}</td>}
+            <td>{user.id}</td>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            {user_role === "driver" && <td>{user.driver.car.model}</td>}
             <td className="status flex">
               <Button
                 text={"View"}
                 handleOnClick={() => {
-                  page === "drivers" ? navigate(`/viewDriver/${driver.Id}`) : navigate(`/viewPassenger/${driver.Id}`);
+                  user_role === "drivers" ? navigate(`/viewDriver/${user.id}`) : navigate(`/viewPassenger/${user.id}`);
                 }}
-                type={"submit"}
+                type={"button"}
                 className="accept-btn"
               />
-              <Button
-                className={"accept-btn"}
-                text={"Chat"}
-                handleOnClick={() => navigate(`/chat/${driver.Id}`)}
-                type={"submit"}
-              />
+              <Button className={"accept-btn"} text={"Chat"} handleOnClick={() => navigate(`/chat/${user.id}`)} type={"button"} />
             </td>
           </tr>
         ))}
