@@ -23,6 +23,7 @@ export const CurrentDriversTable = () => {
       return;
     }
   }, [location.pathname]);
+  const driverId = 6
   return (
     <table>
       <thead>
@@ -49,7 +50,7 @@ export const CurrentDriversTable = () => {
 
             <td className="status flex">
               <Button text={"View"} handleOnClick={() => navigate("/viewDriver")} type={"submit"} className="accept-btn" />
-              <Button className={"accept-btn"} text={"Chat"} handleOnClick={() => navigate("/chat")} type={"submit"} />
+              <Button className={"accept-btn"} text={"Chat"} handleOnClick={() => navigate(`/chat/${driverId}`)} type={"submit"} />
             </td>
           </tr>
         ))}
