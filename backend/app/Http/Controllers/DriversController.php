@@ -8,13 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DriversController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
 
     public function getAvailableDrivers(Request $request)
     {
+        $this->authorize('passenger');
+
         $request->validate([
             'current_lat' => 'required',
             'current_long' => 'required',
@@ -22,9 +24,7 @@ class DriversController extends Controller
             'dest_long' => 'required',
             'pickup_location' => 'required',
         ]);
-        //  $user=Auth::user();
-        //  $userId= $user->id;
-        $userId = 4;
+
         $pickup_location = $request->pickup_location;
         $current_lat = $request->current_lat;
         $current_long = $request->current_long;
