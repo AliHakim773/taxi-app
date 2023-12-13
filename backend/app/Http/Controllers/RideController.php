@@ -80,10 +80,10 @@ class RideController extends Controller
     public function acceptRequestRide()
     {
         $this->authorize('driver');
-        $user = Auth::user()->id;
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
 
-        $user = 2;
-        $rideRequest = CarRide::where('driver_id', $user)->where('status', 'pending')->first();
+        $rideRequest = CarRide::where('driver_id', $user->driver->id)->where('status', 'pending')->first();
         if (!$rideRequest) {
             return response()->json(['status' => 'error', 'message' => 'no pending requests for driver'], 404);
         }
@@ -95,9 +95,10 @@ class RideController extends Controller
     public function finishRequestRide()
     {
         $this->authorize('driver');
-        $user = Auth::user()->id;
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
 
-        $rideRequest = CarRide::where('driver_id', $user)->where('status', 'accepted')->first();
+        $rideRequest = CarRide::where('driver_id', $user->driver->id)->where('status', 'accepted')->first();
         if (!$rideRequest) {
             return response()->json(['status' => 'error', 'message' => 'no finished requests for driver'], 404);
         }
@@ -109,9 +110,10 @@ class RideController extends Controller
     public function rejectRequestRide()
     {
         $this->authorize('driver');
-        $user = Auth::user()->id;
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
 
-        $rideRequest = CarRide::where('driver_id', $user)->where('status', 'pending')->first();
+        $rideRequest = CarRide::where('driver_id', $user->driver->id)->where('status', 'pending')->first();
         if (!$rideRequest) {
             return response()->json(['status' => 'error', 'message' => 'no rejected requests for driver'], 404);
         }

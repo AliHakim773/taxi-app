@@ -32,6 +32,9 @@ function ShowRequests({
             .then((response) => {
                 console.log(response)
             })
+            .catch((e) => {
+                console.log(e)
+            })
     }
     function rejectRequest() {
         axios
