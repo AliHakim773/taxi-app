@@ -2,28 +2,25 @@ import React, { useState, useEffect } from "react";
 import Button from "../common/Button";
 import { drivers } from "../../core/mockData";
 import { requestData } from "../../core/axios";
+import { useNavigate } from "react-router";
 
-export const DriverRequests = () => {
-  const [users, setUsers] = useState([]);
-  const handleAccept = () => {
-    alert("Driver Accepted");
-  };
-  useEffect(() => {
-    const getRequests = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        console.error("Token not available");
-        setIsLoggedIn(false);
-        return;
-      }
-      const headers = {
-        Authorization: token,
-      };
-      const result = await requestData("get_driver_registration_requests", "get", {}, headers);
-      setUsers(result.register_requests);
+export const DriverRequests = ({ users }) => {
+  const navigate = useNavigate();
+
+  const handleAccept = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not available");
+      setIsLoggedIn(false);
+      return;
+    }
+    const headers = {
+      Authorization: token,
     };
-    getRequests();
-  }, []);
+    const result = await requestData("approve", "post", { id }, headers);
+    navigate(0);
+  };
+
   return (
     <table>
       <thead>
@@ -55,8 +52,8 @@ export const DriverRequests = () => {
             <td>{driver.color}</td>
             <td>{driver.plate_number}</td>
             <td className="status flex">
-              <Button text={"Accept"} handleOnClick={() => handleAccept()} type={"submit"} className="accept-btn" />
-              <Button className={"accept-btn"} text={"Deny"} handleOnClick={() => handleAccept()} type={"submit"} />
+              <Button text={"Accept"} handleOnClick={() => handleAccept(driver.id)} className="accept-btn" />
+              <Button text={"Deny"} handleOnClick={() => handleDeny()} className={"accept-btn"} />
             </td>
           </tr>
         ))}

@@ -6,6 +6,7 @@ import { requestData } from "../../core/axios";
 export const Drivers = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [drivers, setDrivers] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -26,13 +27,20 @@ export const Drivers = () => {
         console.log(e);
       }
     };
+
+    const getRequests = async () => {
+      const result = await requestData("get_driver_registration_requests", "get", {}, header);
+      setDrivers(result.register_requests);
+    };
+
     getDrivers();
+    getRequests();
   }, []);
 
   return (
     <div className="content-container">
       <h1>Drivers</h1>
-      <DriverRequests />
+      <DriverRequests users={drivers} />
       {isLoading ? (
         <CurrentUsersTable user_role={"driver"} users={loading} />
       ) : (

@@ -1,11 +1,17 @@
-import React from "react";
-import { drivers } from "../../core/mockData";
+import React, { useState } from "react";
 import InputField from "../common/InputField";
 import Button from "../common/Button";
 export const UserInfo = ({ id }) => {
   const parsedId = parseInt(id, 10);
-  const driver = drivers.find((driver) => driver.Id === parsedId);
-
+  const [values, setValues] = useState({
+    id: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    name: "",
+    car: "",
+    status: "",
+  });
   if (!driver) {
     return <div>No driver found</div>;
   }
