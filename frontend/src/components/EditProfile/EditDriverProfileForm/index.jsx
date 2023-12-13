@@ -37,6 +37,7 @@ const EditDriverProfileForm = () => {
             try {
                 const res = await requestData("get_user", "get", {}, headers)
                 if (res.status == "success") {
+                    dispatch(setUser(res.user))
                     setValues({
                         name: res.user.name,
                         email: res.user.email,
