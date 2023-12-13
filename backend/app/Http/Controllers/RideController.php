@@ -31,6 +31,7 @@ class RideController extends Controller
         $status = "pending";
         $user_id = Auth::user()->id;
 
+
         $carRide = CarRide::create([
             'user_id' => $user_id,
             'driver_id' => $request->driver_id,
@@ -52,9 +53,10 @@ class RideController extends Controller
     public function getRideRequest()
     {
         $this->authorize('driver');
-        $user = Auth::user()->id;
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
 
-        $request = CarRide::where('driver_id', $user)->where('status', 'pending')->get();
+        $request = CarRide::where('driver_id', $user->driver->id)->where('status', 'pending')->get();
 
         $passengers = [];
         foreach ($request as $req) {

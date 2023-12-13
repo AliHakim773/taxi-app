@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('driver_id')->constrained()->onDelete('cascade');
-            $table->string('from_long');
-            $table->string('from_lat');
-            $table->string('to_long');
-            $table->string('to_lat');
+            $table->integer('from_long');
+            $table->integer('from_lat');
+            $table->integer('to_long');
+            $table->integer('to_lat');
             $table->string('price');
             $table->integer('rate')->nullable();
-            $table->string('duration');
+            $table->integer('duration');
             $table->enum('status', ['pending', 'accepted', 'finished', 'denied']);
             $table->timestamps();
         });
