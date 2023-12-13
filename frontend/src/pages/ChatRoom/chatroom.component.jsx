@@ -1,5 +1,5 @@
 import NavBar from "../../components/common/NavBar"
-import SideBar from "../../components/siebar"
+import SideBar from "../../components/sidebar"
 import Chat from "../../components/chat/"
 import { useDispatch, useSelector } from "react-redux"
 import { extractUserSlice, setUser } from "../../core/redux/user/userSlice"
