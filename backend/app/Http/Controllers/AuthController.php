@@ -76,16 +76,27 @@ class AuthController extends Controller
     }
     public function register_driver(Request $request)
     {
+        return response()->json([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>$request->password,
+            'phone_number'=>$request->phone_number,
+            'location'=>$request->location,
+            'car_name'=>$request->car_name,
+            'model'=>$request->model,
+            'color'=>$request->color,
+            'plate_number'=>$request->plate_number
+        ]);
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'phone_number' => 'required|string|min:3',
-            'location' => 'required|string',
-            'car_name' => 'required|string',
-            'model' => 'required|string',
-            'color' => 'required|string',
-            'plate_number' => 'required|string',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
+            'phone_number' => 'required|min:3',
+            'location' => 'required',
+            'car_name' => 'required',
+            'model' => 'required',
+            'color' => 'required',
+            'plate_number' => 'required|',
         ]);
 
         $user = new DriverRegisterRequest();
