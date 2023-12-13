@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import MessagesContainer from '../messagesContainer/messages-container.component'
 import { useLocation } from 'react-router-dom'
 import './style.css'
-const Chat = () => {
+const Chat = ({ receiverId }) => {
   const dispatch = useDispatch()
   const userState = useSelector(extractUserSlice)
   return (
@@ -15,10 +15,10 @@ const Chat = () => {
         <div className="name">Nadim Rifaii</div>
       </header>
       <div className="holder">
-        <MessagesContainer userId={userState.id} />
+        <MessagesContainer receiverId={receiverId} userId={userState.id} />
       </div>
       <div className="input-container">
-        <Input userId={userState.id} />
+        <Input receiverId={receiverId} userId={userState.id} />
       </div>
     </div>
   )

@@ -6,6 +6,7 @@ import { extractUserSlice, setUser } from "../../core/redux/user/userSlice"
 // css imports
 import './style.css'
 const ChatRoom = () => {
+  console.log('Hello from normal chatroom')
   const dispatch = useDispatch()
   const userState = useSelector(extractUserSlice)
   return (
@@ -13,7 +14,7 @@ const ChatRoom = () => {
       <NavBar />
       <main>
         <SideBar />
-        <Chat userId={userState.id} />
+        <Chat receiverId={3} userId={userState.id} />
       </main>
     </div>
   )

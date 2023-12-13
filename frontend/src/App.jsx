@@ -14,9 +14,8 @@ function App() {
                 <Route path='/' element={<LandingPage />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
-                <Route path='/chatroom' element={<ChatRoom />} />
                 <Route path='/edit-profile' element={<EditProfile />} />
-                <Route path="/contact" element={<ChatRoom />} />
+                <Route path='/chatroom' index element={<ChatRoom />} />
             </Routes>
         </div>
     )
