@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('phone_number');
             $table->string('location');
             $table->string('img_url');
+            $table->string('car_name');
             $table->string('model');
             $table->string('color');
             $table->string('plate_number');

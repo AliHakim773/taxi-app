@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('from_lat');
             $table->string('to_long');
             $table->string('to_lat');
-            $table->decimal('price', 10, 2);
-            $table->decimal('rate');
-            $table->time('duration');
+            $table->string('price');
+            $table->integer('rate')->nullable();
+            $table->integer('duration');
             $table->enum('status', ['pending', 'accepted', 'finished', 'canceled', 'denied']);
             $table->timestamps();
         });

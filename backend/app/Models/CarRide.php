@@ -21,9 +21,4 @@ class CarRide extends Model
     {
         return $this->belongsTo(Driver::class);
     }
-
-    public function routes(): HasMany
-    {
-        return $this->hasMany(Route::class);
-    }
 }
