@@ -16,7 +16,7 @@ const DriverForm = () => {
         email: "",
         password: "",
         confirmPassword: "",
-        location: "",
+        location: "beirut",
         phone_number: "",
         car_name: "",
         model: "",
@@ -127,7 +127,12 @@ const DriverForm = () => {
                     value={values.plate_number}
                     handleChange={HandleOnInputChange}
                 />
-                <select>
+                <select
+                    className='select-input'
+                    name={"location"}
+                    id={"location"}
+                    value={values.location}
+                    onChange={HandleOnInputChange}>
                     <option value='beirut'>Beirut</option>
                     <option value='tripoli'>Tripoli</option>
                     <option value='batroun'>Batroun</option>
@@ -135,13 +140,13 @@ const DriverForm = () => {
                     <option value='chouf'>Chouf</option>
                     <option value='south'>South</option>
                 </select>
-                <InputField
+                {/* <InputField
                     type={"text"}
                     name={"location"}
                     text={"Location"}
                     value={values.location}
                     handleChange={HandleOnInputChange}
-                />
+                /> */}
             </div>
             {error.status ? <span className='error'>{error.msg}</span> : ""}
             <div className='submit-btn-wrapper'>
