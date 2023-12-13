@@ -18,6 +18,7 @@ const DriverForm = () => {
         confirmPassword: "",
         location: "",
         phone_number: "",
+        car_name: "",
         model: "",
         color: "",
         plate_number: "",
@@ -108,14 +109,14 @@ const DriverForm = () => {
                     type={"text"}
                     name={"model"}
                     text={"Car Model"}
-                    value={values.model}
+                    value={values.car_name}
                     handleChange={HandleOnInputChange}
                 />
                 <InputField
-                    text={"Plate Number"}
                     type={"text"}
-                    name={"plate_number"}
-                    value={values.plate_number}
+                    name={"model"}
+                    text={"Car Model"}
+                    value={values.model}
                     handleChange={HandleOnInputChange}
                 />
             </div>
@@ -125,6 +126,13 @@ const DriverForm = () => {
                     type={"text"}
                     name={"color"}
                     value={values.color}
+                    handleChange={HandleOnInputChange}
+                />
+                <InputField
+                    text={"Plate Number"}
+                    type={"text"}
+                    name={"plate_number"}
+                    value={values.plate_number}
                     handleChange={HandleOnInputChange}
                 />
             </div>

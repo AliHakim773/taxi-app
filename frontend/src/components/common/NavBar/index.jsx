@@ -50,11 +50,15 @@ const NavBar = () => {
                     </li>
                     {userState.role_id === 2 || userState.role_id === 1 ? (
                         <li>
-                            <Link className='nav-item'>Call A Ride</Link>
+                            <Link className='nav-item' to={"/customer"}>
+                                Call A Ride
+                            </Link>
                         </li>
                     ) : userState.role_id === 3 ? (
                         <li>
-                            <Link className='nav-item'>Start Working</Link>
+                            <Link className='nav-item' to={"/driver"}>
+                                Start Working
+                            </Link>
                         </li>
                     ) : (
                         ""
