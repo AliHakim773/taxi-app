@@ -3,21 +3,9 @@ import { postMessage, getMessages } from "../../core/axios"
 import { ReactComponent as SendLogo } from '../../assets/svg/sendLogo.svg'
 import { extractMessagesSlice, setMessages } from "../../core/redux/messages/messagesSlice"
 import { useDispatch, useSelector } from "react-redux"
-import { useLocation } from 'react-router';
 import './style.css'
-const Input = ({ userId }) => {
+const Input = ({ userId, receiver }) => {
   let dispatch = useDispatch()
-  let location = useLocation()
-  let [receiver, setReceiver] = useState(6)
-  useEffect(() => {
-    if (location.pathname.includes('contact')) {
-      setReceiver(1)
-    } else {
-      setReceiver(3)
-    }
-  }, [location.pathname])
-  console.log(receiver)
-  console.log(userId)
   const [inputValue, setInputValue] = useState('')
   function inputChange(e) {
     setInputValue(e.target.value)
@@ -45,7 +33,6 @@ const Input = ({ userId }) => {
         <button onClick={async () => {
           await createMessage()
           await fetchMessages()
-          console.log(receiver)
           setInputValue('')
         }} >
           <SendLogo />
