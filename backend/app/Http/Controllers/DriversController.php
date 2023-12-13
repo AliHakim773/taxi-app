@@ -17,6 +17,7 @@ class DriversController extends Controller
     {
         $this->authorize('passenger');
 
+
         $request->validate([
             'current_lat' => 'required',
             'current_long' => 'required',
@@ -55,7 +56,9 @@ class DriversController extends Controller
             }
         }
         $driversData = [];
+        // return response()->json(['available_drivers' => $availableDrivers]);
 
+        // $driver = $locationDrivers[0];
         foreach ($locationDrivers as $driver) {
             $driverId = $driver->id;
             $driverName = $driver->user->name;
