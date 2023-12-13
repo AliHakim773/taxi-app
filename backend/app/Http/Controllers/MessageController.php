@@ -52,9 +52,9 @@ public function getAllMessages(){
         $allMessagesSorted = $allMessages->sortBy('created_at')->values();
         // $messages=$user->sentMessages;
         return response()->json([
-            'sender messages'=>$senderMessages,
-            'receiver messages'=>$receiverMessages,
-            'all messages'=>$allMessages,
+            // 'sender messages'=>$senderMessages,
+            // 'receiver messages'=>$receiverMessages,
+            // 'all messages'=>$allMessages,
             'sorted messages'=>$allMessagesSorted
         ])->header('Access-Control-Allow-Origin', '*');
     }
