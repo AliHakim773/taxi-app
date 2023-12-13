@@ -28,7 +28,7 @@ class AuthController extends Controller
         if (!$token) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Unauthorized',
+                'message' => 'wrong creds',
             ], 401);
         }
 
@@ -51,7 +51,6 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
             'phone_number' => 'required|string|min:3',
             'location' => 'required|string',
-            'img_url' => 'string|img_url',
         ]);
 
         $user = new User();
@@ -60,7 +59,7 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->phone_number = $request->phone_number;
         $user->location = $request->location;
-        $user->img_url = $request->img_url ?? 'defualt';
+        $user->img_url = "uploads/default.jpg";
         $user->role_id = 2;
         $user->save();
 
@@ -83,18 +82,18 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
             'phone_number' => 'required|string|min:3',
             'location' => 'required|string',
-            'img_url' => 'string|img_url',
             'model' => 'required|string',
             'color' => 'required|string',
             'plate_number' => 'required|string',
         ]);
+
         $user = new DriverRegisterRequest();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->phone_number = $request->phone_number;
         $user->location = $request->location;
-        $user->img_url = $request->img_url ?? 'defualt';
+        $user->img_url = "uploads/default.jpg";
         $user->color = $request->color;
         $user->model = $request->model;
         $user->plate_number = $request->plate_number;
@@ -123,10 +122,6 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'user' => Auth::user(),
-            // 'authorisation' => [
-            //     'token' => Auth::refresh(),
-            //     'type' => 'bearer',
-            // ]
         ]);
     }
 }
