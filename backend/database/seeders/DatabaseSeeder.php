@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Car;
 use App\Models\Driver;
+use App\Models\DriverRegisterRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -98,6 +99,30 @@ class DatabaseSeeder extends Seeder
             'model' => 'B2',
             'color' => 'white',
             'plate_number' => 'Nadim'
+        ]);
+        DriverRegisterRequest::create([
+            'name' => 'Ali',
+            'email' => 'ali@example.com',
+            'password' => 'password',
+            'phone_number' => 71000000,
+            'location' => 'location',
+            'img_url' => 'upload/default.png',
+            'model' => 'model',
+            'color' => 'color',
+            'plate_number' => 'plate_number',
+            'request_status' => 'pending',
+        ]);
+        DriverRegisterRequest::create([
+            'name' => 'Rayan',
+            'email' => 'rayan@example.com',
+            'password' => 'password',
+            'phone_number' => 71000000,
+            'location' => 'location',
+            'img_url' => 'upload/default.png',
+            'model' => 'model',
+            'color' => 'color',
+            'plate_number' => 'plate_number',
+            'request_status' => 'accepted',
         ]);
     }
 }
