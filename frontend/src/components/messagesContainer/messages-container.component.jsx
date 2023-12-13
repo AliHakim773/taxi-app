@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { useLocation } from 'react-router-dom';
 import './style.css'
 import Message from "../message/message.component"
-const MessagesContainer = ({ userId, receiver }) => {
+const MessagesContainer = ({ userId, receiver = 1 }) => {
   let dispatch = useDispatch()
   const { allMessages } = useSelector(extractMessagesSlice)
   let timeout = 0, interval = 0
   useEffect(() => {
     async function fetchMessages() {
-      console.log([userId, receiver])
+
       try {
         const headers = { Authorization: localStorage.getItem('token') }
         const data = await getMessages('getUsersMessages', 'POST', { receiverId: receiver }, headers);
@@ -22,11 +22,11 @@ const MessagesContainer = ({ userId, receiver }) => {
       }
     }
     fetchMessages()
-    // clearInterval(interval)
-    // interval = setInterval(() => {
-    //   fetchMessages()
-    // }, 3000)
-  }, [receiver]);
+    clearInterval(interval)
+    interval = setInterval(() => {
+      fetchMessages()
+    }, 3000)
+  }, []);
   return (
     <div className="messages-container">
       {

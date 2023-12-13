@@ -8,15 +8,6 @@ import './style.css'
 const Chat = () => {
   const dispatch = useDispatch()
   const userState = useSelector(extractUserSlice)
-  const location = useLocation();
-  const [receiver, setReceiver] = useState(3)
-  useEffect(() => {
-    if (location.pathname.includes('contact')) {
-      setReceiver(1)
-    } else {
-      setReceiver(3)
-    }
-  }, [location.pathname])
   return (
     <div className="chat">
       <header>
@@ -24,10 +15,10 @@ const Chat = () => {
         <div className="name">Nadim Rifaii</div>
       </header>
       <div className="holder">
-        <MessagesContainer userId={userState.id} receiver={receiver} />
+        <MessagesContainer userId={userState.id} />
       </div>
       <div className="input-container">
-        <Input userId={userState.id} receiver={receiver} />
+        <Input userId={userState.id} />
       </div>
     </div>
   )

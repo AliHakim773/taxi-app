@@ -5,7 +5,7 @@ import { extractMessagesSlice, setMessages } from "../../core/redux/messages/mes
 import { useDispatch, useSelector } from "react-redux"
 import { useLocation } from 'react-router';
 import './style.css'
-const Input = ({ userId, receiver }) => {
+const Input = ({ userId, receiver = 1 }) => {
   let dispatch = useDispatch()
   const [inputValue, setInputValue] = useState('')
   function inputChange(e) {
