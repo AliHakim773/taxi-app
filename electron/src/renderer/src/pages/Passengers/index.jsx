@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import { useLocation } from "react-router-dom";
-import { DriverRequests } from "../../components/DriverRequests";
 import { CurrentUsersTable } from "../../components/CurrentUsersTable";
+import { requestData } from "../../core/axios";
 export const Passengers = () => {
-  const location = useLocation();
   const [users, setUsers] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setUsers();
     const token = localStorage.getItem("token");
@@ -16,15 +14,38 @@ export const Passengers = () => {
 
     if (!token) {
       console.error("Token not available");
-      setIsLoggedIn(false);
       return;
     }
-  }, [location.pathname]);
+    const getPassengers = async () => {
+      try {
+        const results = await requestData("get_all_passengers", "get", {}, header);
+        setUsers(results.passengers);
+        setIsLoading(false);
+        console.log(results);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getPassengers();
+  }, []);
 
   return (
     <div className="content-container">
       <h1>Passengers</h1>
-      <CurrentUsersTable />
+      {isLoading ? (
+        <CurrentUsersTable user_role={"passenger"} users={loading} />
+      ) : (
+        <CurrentUsersTable user_role={"passenger"} users={users} />
+      )}
+      ;
     </div>
   );
 };
+
+const loading = [
+  {
+    id: "Loading...",
+    name: "Loading...",
+    email: "Loading..",
+  },
+];
