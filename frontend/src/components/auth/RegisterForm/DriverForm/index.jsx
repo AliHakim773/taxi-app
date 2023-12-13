@@ -107,8 +107,8 @@ const DriverForm = () => {
             <div className='registerform-pair'>
                 <InputField
                     type={"text"}
-                    name={"model"}
-                    text={"Car Model"}
+                    name={"car_name"}
+                    text={"Car Name"}
                     value={values.car_name}
                     handleChange={HandleOnInputChange}
                 />

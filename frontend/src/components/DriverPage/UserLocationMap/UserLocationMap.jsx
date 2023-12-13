@@ -31,7 +31,7 @@ function UserMarker({ userLocation, userDestinationTrigger }) {
   );
 }
 function UserLocationMap({ userLocation }) {
-  function goToUser() {}
+  function goToUser() { }
   return (
     <div className="user-location_map">
       <p
