@@ -124,5 +124,17 @@ class DatabaseSeeder extends Seeder
             'plate_number' => 'plate_number',
             'request_status' => 'accepted',
         ]);
+        DriverRegisterRequest::create([
+            'name' => 'nadim',
+            'email' => 'nadim@example.com',
+            'password' => 'password',
+            'phone_number' => 71000000,
+            'location' => 'location',
+            'img_url' => 'upload/default.png',
+            'model' => 'model',
+            'color' => 'color',
+            'plate_number' => 'plate_number',
+            'request_status' => 'pending',
+        ]);
     }
 }
