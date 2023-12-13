@@ -8,7 +8,7 @@ import './style.css'
 const Input = ({ userId }) => {
   let dispatch = useDispatch()
   let location = useLocation()
-  let [receiver, setReceiver] = useState(3)
+  let [receiver, setReceiver] = useState(6)
   useEffect(() => {
     if (location.pathname.includes('contact')) {
       setReceiver(1)
@@ -16,6 +16,8 @@ const Input = ({ userId }) => {
       setReceiver(3)
     }
   }, [location.pathname])
+  console.log(receiver)
+  console.log(userId)
   const [inputValue, setInputValue] = useState('')
   function inputChange(e) {
     setInputValue(e.target.value)
@@ -30,7 +32,6 @@ const Input = ({ userId }) => {
   async function fetchMessages() {
     try {
       const headers = { Authorization: localStorage.getItem('token') }
-
       const data = await getMessages('getUsersMessages', 'POST', { receiverId: receiver }, headers);
       dispatch(setMessages({ allMessages: data['sorted messages'] }))
     } catch (error) {
