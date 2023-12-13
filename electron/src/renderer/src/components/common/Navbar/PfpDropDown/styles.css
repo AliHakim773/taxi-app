@@ -3,7 +3,7 @@
   border-radius: 5px;
   position: absolute;
   right: 20px;
-  bottom: calc(-100% + 11px);
+  bottom: calc(-20%);
   display: flex;
   flex-direction: column;
   z-index: 100;
@@ -11,7 +11,6 @@
   transform-origin: top;
   transform: translateX(10%) translateY(10%);
   opacity: 0;
-  /* visibility: hidden; */
   transition: 0.5s ease;
 }
 .pfp-show {
@@ -24,16 +23,7 @@
   padding: 5px 10px;
   font-size: 14px;
   color: black;
-  border-bottom: 1px solid grey;
 }
 .pfp-drop-down-item:hover {
   background-color: rgba(0, 0, 0, 0.3);
-}
-.pfp-drop-down-item:first-child {
-  padding-top: 10px;
-  border-radius: 5px 5px 0 0;
-}
-.pfp-drop-down-item:last-child {
-  padding-bottom: 10px;
-  border-radius: 0 0 5px 5px;
 }

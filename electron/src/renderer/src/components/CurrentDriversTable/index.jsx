@@ -6,9 +6,6 @@ import { useNavigate } from "react-router";
 export const CurrentDriversTable = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  const handleAccept = () => {
-    // alert("Driver Accepted");
-  };
 
   useEffect(() => {
     setUsers(drivers);
@@ -32,6 +29,7 @@ export const CurrentDriversTable = () => {
           </th>
         </tr>
         <tr>
+          <th></th>
           <th>Id</th>
           <th>Name</th>
           <th>Email</th>
@@ -42,19 +40,24 @@ export const CurrentDriversTable = () => {
       <tbody>
         {users.map((driver, index) => (
           <tr key={index}>
+            <td></td>
             <td>{driver.Id}</td>
             <td>{driver.name}</td>
             <td>{driver.email}</td>
             <td>{driver.car}</td>
-
             <td className="status flex">
               <Button
                 text={"View"}
-                handleOnClick={() => navigate(`/viewdriver/${driver.Id}`)}
+                handleOnClick={() => navigate(`/viewDriver/${driver.Id}`)}
                 type={"submit"}
                 className="accept-btn"
               />
-              <Button className={"accept-btn"} text={"Chat"} handleOnClick={() => navigate("/chat")} type={"submit"} />
+              <Button
+                className={"accept-btn"}
+                text={"Chat"}
+                handleOnClick={() => navigate(`/chat/${driver.Id}`)}
+                type={"submit"}
+              />
             </td>
           </tr>
         ))}

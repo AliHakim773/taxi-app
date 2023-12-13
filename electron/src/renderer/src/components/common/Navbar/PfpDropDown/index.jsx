@@ -36,15 +36,6 @@ const PfpDropDown = ({ isHidden, setIsLoggedIn }) => {
 
   return (
     <div className={isHidden ? "pfp-drop-down" : "pfp-drop-down pfp-show"}>
-      <Link
-        className="pfp-drop-down-item"
-        onClick={(e) => {
-          e.preventDefault();
-          navigate("/editprofile");
-        }}
-      >
-        Edit Profile
-      </Link>
       <Link className="pfp-drop-down-item" onClick={handleOnClick}>
         Log out
       </Link>

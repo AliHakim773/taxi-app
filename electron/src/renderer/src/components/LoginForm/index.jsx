@@ -25,6 +25,7 @@ const LoginForm = () => {
         localStorage.setItem("token", `Bearer ${res.authorisation.token}`);
         console.log(res.user);
         dispatch(setUser(res.user));
+
         navigate("/drivers");
       }
       console.log(res);
