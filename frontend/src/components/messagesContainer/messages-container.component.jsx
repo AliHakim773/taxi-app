@@ -32,10 +32,10 @@ const MessagesContainer = ({ userId }) => {
       }
     }
     fetchMessages()
-    // clearInterval(interval)
-    // interval = setInterval(() => {
-    //   fetchMessages()
-    // }, 3000)
+    clearInterval(interval)
+    interval = setInterval(() => {
+      fetchMessages()
+    }, 3000)
   }, [receiver]);
   return (
     <div className="messages-container">
