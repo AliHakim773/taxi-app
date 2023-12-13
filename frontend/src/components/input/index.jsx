@@ -4,7 +4,7 @@ import { ReactComponent as SendLogo } from '../../assets/svg/sendLogo.svg'
 import { extractMessagesSlice, setMessages } from "../../core/redux/messages/messagesSlice"
 import { useDispatch, useSelector } from "react-redux"
 import './style.css'
-const Input = ({ userId, receiver }) => {
+const Input = ({ userId, receiver = 3 }) => {
   let dispatch = useDispatch()
   const [inputValue, setInputValue] = useState('')
   function inputChange(e) {

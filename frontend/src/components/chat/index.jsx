@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { extractUserSlice, setUser } from "../../core/redux/user/userSlice"
-import Input from '../input'
+import Input from '../input/index.jsx'
 import MessagesContainer from '../messagesContainer/messages-container.component'
 import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from "react"
@@ -9,13 +9,6 @@ const Chat = () => {
   const dispatch = useDispatch()
   const userState = useSelector(extractUserSlice)
   const location = useLocation();
-  const [receiver, setReceiver] = useState(1)
-  useEffect(() => {
-    if (location.pathname.includes('contact'))
-      setReceiver(1)
-    else
-      setReceiver(3)
-  }, [location.pathname])
   return (
     <div className="chat">
       <header>
@@ -23,10 +16,10 @@ const Chat = () => {
         <div className="name">Nadim Rifaii</div>
       </header>
       <div className="holder">
-        <MessagesContainer userId={userState.id} receiver={receiver} />
+        <MessagesContainer userId={userState.id} />
       </div>
       <div className="input-container">
-        <Input userId={userState.id} receiver={receiver} />
+        <Input userId={userState.id} />
       </div>
     </div>
   )
