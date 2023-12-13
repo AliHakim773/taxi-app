@@ -79,6 +79,24 @@ class DatabaseSeeder extends Seeder
             'img_url' => 'img.png',
             'phone_number' => 12355,
         ]);
+        User::factory()->create([
+            'name' => 'Passenger 3',
+            'role_id' => 2,
+            'email' => 'passenger3@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'somewhere',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+        ]);
+        User::factory()->create([
+            'name' => 'Passenger 4',
+            'role_id' => 2,
+            'email' => 'passenger4@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'somewhere',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+        ]);
         Driver::create([
             'user_id' => 2,
             'availability' => 'active'
