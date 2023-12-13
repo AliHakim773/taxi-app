@@ -9,16 +9,16 @@ use Illuminate\Support\Facades\Auth;
 
 class RideController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
 
     public function createRideRequest(Request $request)
     {
-        // $this->authorize('passenger');
-        $request->validate([
+        $this->authorize('passenger');
 
+        $request->validate([
             'driver_id' => 'required',
             'from_long' => 'required',
             'from_lat' => 'required',
@@ -29,10 +29,10 @@ class RideController extends Controller
         ]);
 
         $status = "pending";
-        // $user=Auth::user()->id;
-        $user = 4;
+        $user_id = Auth::user()->id;
+
         $carRide = CarRide::create([
-            'user_id' => $user,
+            'user_id' => $user_id,
             'driver_id' => $request->driver_id,
             'from_long' => $request->from_long,
             'from_lat' => $request->from_lat,
@@ -42,36 +42,44 @@ class RideController extends Controller
             'duration' => $request->duration,
             'status' => $status,
         ]);
-        return response()->json(['status' => 'success'], 200);
+
+        return response()->json([
+            'status' => 'success',
+            'car_ride' => $carRide
+        ], 200);
     }
 
     public function getRideRequest()
     {
-        // $this->authorize('driver');
-        // $user=Auth::user()->id;
-        $user = 2;
+        $this->authorize('driver');
+        $user = Auth::user()->id;
+
         $request = CarRide::where('driver_id', $user)->where('status', 'pending')->get();
+
         $passengers = [];
         foreach ($request as $req) {
             $pas_id = $req->user_id;
             $passengers[] = User::where('id', $pas_id)->first();
         }
+
         return response()->json(['status' => 'success', 'request' => $request, 'passenger_info' => $passengers], 200);
     }
 
-    public function rideRequestStatus(Request $request)
-    { //*
-        // $this->authorize('passenger');
-        // $user=Auth::user()->id;
-        $user = 4;
+    public function rideRequestStatus()
+    {
+        $this->authorize('passenger');
+        $user = Auth::user()->id;
+
+        //TODO
         $request_status = CarRide::where('user_id', $user)->where('status', 'pending')->orWhere('status', 'accepted')->orWhere('status', 'denied')->first();
         return response()->json(['status' => 'success', 'request_status' => $request_status], 200);
     }
 
     public function acceptRequestRide()
     {
-        // $this->authorize('driver');
-        // $user=Auth::user()->id;
+        $this->authorize('driver');
+        $user = Auth::user()->id;
+
         $user = 2;
         $rideRequest = CarRide::where('driver_id', $user)->where('status', 'pending')->first();
         if (!$rideRequest) {
@@ -84,9 +92,9 @@ class RideController extends Controller
 
     public function finishRequestRide()
     {
-        // $this->authorize('driver');
-        // $user=Auth::user()->id;
-        $user = 2;
+        $this->authorize('driver');
+        $user = Auth::user()->id;
+
         $rideRequest = CarRide::where('driver_id', $user)->where('status', 'accepted')->first();
         if (!$rideRequest) {
             return response()->json(['status' => 'error', 'message' => 'no finished requests for driver'], 404);
@@ -98,13 +106,14 @@ class RideController extends Controller
 
     public function rejectRequestRide()
     {
-        // $this->authorize('driver');
-        // $user=Auth::user()->id;
-        $user = 2;
-        $rideRequest = CarRide::where('driver_id', $user)->where('status', 'accepted')->first();
+        $this->authorize('driver');
+        $user = Auth::user()->id;
+
+        $rideRequest = CarRide::where('driver_id', $user)->where('status', 'pending')->first();
         if (!$rideRequest) {
             return response()->json(['status' => 'error', 'message' => 'no rejected requests for driver'], 404);
         }
+        //TODO
         $rideRequest->status = 'denied';
         $rideRequest->save();
         return response()->json(['status' => 'success'], 200);
