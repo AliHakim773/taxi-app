@@ -5,6 +5,7 @@ import Navbar from "./components/common/Navbar";
 import { Drivers } from "./pages/Drivers";
 import { Sidebar } from "./components/common/Sidebar";
 import { ViewDriver } from "./components/ViewDriver";
+import ChatRoom from "./pages/ChatRoom/chatroom.component";
 function App() {
   const location = useLocation();
   return (
@@ -17,8 +18,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/drivers" element={<Drivers />} />
             <Route path="/viewDriver" element={<ViewDriver />} />
-            {/* <Route path="/passengers" element={<Passengers />} />
-          <Route path="/analytics" element={<Analytics />} /> */}
+            <Route path="/chat" element={<ChatRoom />} />
           </Routes>
         </div>
       </div>
