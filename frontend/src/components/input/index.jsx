@@ -5,17 +5,8 @@ import { extractMessagesSlice, setMessages } from "../../core/redux/messages/mes
 import { useDispatch, useSelector } from "react-redux"
 import { useLocation } from 'react-router';
 import './style.css'
-const Input = ({ userId }) => {
+const Input = ({ userId, receiver }) => {
   let dispatch = useDispatch()
-  let location = useLocation()
-  let [receiver, setReceiver] = useState(3)
-  useEffect(() => {
-    if (location.pathname.includes('contact')) {
-      setReceiver(1)
-    } else {
-      setReceiver(3)
-    }
-  }, [location.pathname])
   const [inputValue, setInputValue] = useState('')
   function inputChange(e) {
     setInputValue(e.target.value)
