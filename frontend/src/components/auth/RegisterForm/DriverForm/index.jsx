@@ -26,6 +26,7 @@ const DriverForm = () => {
 
     const HandleOnInputChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
+        console.log(values)
     }
 
     const handleRegister = async () => {
@@ -38,13 +39,7 @@ const DriverForm = () => {
         }
         try {
             const res = await requestData("register_driver", "post", values)
-            console.log(res)
             if (res.status == "success") {
-                localStorage.setItem(
-                    "token",
-                    `Bearer ${res.authorisation.token}`
-                )
-                dispatch(setUser(res.user))
                 navigate("/")
             }
         } catch (err) {
@@ -91,27 +86,20 @@ const DriverForm = () => {
             <div className='registerform-pair'>
                 <InputField
                     type={"text"}
-                    name={"location"}
-                    text={"Location"}
-                    value={values.location}
-                    handleChange={HandleOnInputChange}
-                />
-                <InputField
-                    type={"text"}
                     name={"phone_number"}
                     text={"Phone Number"}
                     value={values.phone_number}
                     handleChange={HandleOnInputChange}
                 />
-            </div>
-            <div className='registerform-pair'>
                 <InputField
                     type={"text"}
-                    name={"model"}
-                    text={"Car Model"}
+                    name={"car_name"}
+                    text={"Car Name"}
                     value={values.car_name}
                     handleChange={HandleOnInputChange}
                 />
+            </div>
+            <div className='registerform-pair'>
                 <InputField
                     type={"text"}
                     name={"model"}
@@ -119,8 +107,6 @@ const DriverForm = () => {
                     value={values.model}
                     handleChange={HandleOnInputChange}
                 />
-            </div>
-            <div className='registerform-pair'>
                 <InputField
                     text={"Car Color"}
                     type={"text"}
@@ -128,11 +114,28 @@ const DriverForm = () => {
                     value={values.color}
                     handleChange={HandleOnInputChange}
                 />
+            </div>
+            <div className='registerform-pair'>
                 <InputField
                     text={"Plate Number"}
                     type={"text"}
                     name={"plate_number"}
                     value={values.plate_number}
+                    handleChange={HandleOnInputChange}
+                />
+                <select>
+                    <option value='beirut'>Beirut</option>
+                    <option value='tripoli'>Tripoli</option>
+                    <option value='batroun'>Batroun</option>
+                    <option value='sayda'>Sayda</option>
+                    <option value='chouf'>Chouf</option>
+                    <option value='south'>South</option>
+                </select>
+                <InputField
+                    type={"text"}
+                    name={"location"}
+                    text={"Location"}
+                    value={values.location}
                     handleChange={HandleOnInputChange}
                 />
             </div>
