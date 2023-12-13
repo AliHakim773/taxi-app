@@ -38,3 +38,36 @@ export const drivers = [
     plateNumber: "6F8E24",
   },
 ];
+
+export const orders = [
+  {
+    orderId: 1,
+    passenger: "Mhmd",
+    picked_up: "beirut",
+    drop_off: "Tyre",
+    ride_time: "80 mins",
+    status: "Finished",
+    rating: "5.0",
+    date: "20203-12-13",
+  },
+  {
+    orderId: 2,
+    passenger: "Mhmd",
+    picked_up: "beirut",
+    drop_off: "Tyre",
+    ride_time: "80 mins",
+    status: "Finished",
+    rating: "5.0",
+    date: "20203-12-13",
+  },
+  {
+    orderId: 3,
+    passenger: "Mhmd",
+    picked_up: "beirut",
+    drop_off: "Tyre",
+    ride_time: "80 mins",
+    status: "Finished",
+    rating: "5.0",
+    date: "20203-12-13",
+  },
+];
