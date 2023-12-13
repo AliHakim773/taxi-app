@@ -18,7 +18,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/drivers" element={<Drivers />} />
             <Route path="/viewDriver" element={<ViewDriver />} />
-            <Route path="/chat" element={<ChatRoom />} />
+            <Route path="/chat/:id" element={<ChatRoom />} />
           </Routes>
         </div>
       </div>

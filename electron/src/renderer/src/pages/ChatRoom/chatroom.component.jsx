@@ -8,6 +8,7 @@ import './style.css'
 const ChatRoom = () => {
   const dispatch = useDispatch()
   const userState = useSelector(extractUserSlice)
+
   return (
     <div className='content-container chat-room'>
       <main>

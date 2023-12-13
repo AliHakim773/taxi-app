@@ -43,13 +43,13 @@ export const CurrentDriversTable = () => {
       <tbody>
         {users.map((driver, index) => (
           <tr key={index}>
-            <td>{driver.Id}1</td>
+            <td>{driver.id}</td>
             <td>{driver.name}</td>
             <td>{driver.email}</td>
             <td>{driver.car}</td>
             <td className="status flex">
               <Button text={"View"} handleOnClick={() => navigate("/viewDriver")} type={"submit"} className="accept-btn" />
-              <Button className={"accept-btn"} text={"Chat"} handleOnClick={() => navigate(`/chat`)} type={"submit"} />
+              <Button className={"accept-btn"} text={"Chat"} handleOnClick={() => navigate(`/chat/${driver.id}`)} type={"submit"} />
             </td>
           </tr>
         ))}
