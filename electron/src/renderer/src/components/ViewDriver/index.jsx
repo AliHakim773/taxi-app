@@ -16,7 +16,29 @@ export const ViewDriver = () => {
   return (
     <div className="content-container">
       <BackButton />
-      <div className="profile-info">
+      <div className="profile-info flex">
+        <div className="form">
+          <div className=" field  ">
+            <label htmlFor="email">Email</label>
+            <input type="text" name="email" value={driver.email} />
+          </div>
+          <div className="field">
+            <label htmlFor="password">password</label>
+            <input type="text" name="password" value={driver.password} />
+          </div>
+          <div className="field">
+            <label htmlFor="password">location</label>
+            <input type="text" name="location" value={driver.location} />
+          </div>
+          <div className="field">
+            <label htmlFor="name">car</label>
+            <input type="text" name="car" value={driver.car} />
+          </div>
+          <div className="field">
+            <label htmlFor="contact">status</label>
+            <input type="text" name="status" value={driver.status} />
+          </div>
+        </div>
         <div className="info-left">
           <img src="/driver.png" alt="" />
           <h3>{driver.name}</h3>

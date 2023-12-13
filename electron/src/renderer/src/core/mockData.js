@@ -7,6 +7,8 @@ export const drivers = [
     car: "Toyota",
     color: "grey",
     plateNumber: "6F8E24",
+    password: "123456",
+    status: "Active",
   },
   {
     Id: 2,
