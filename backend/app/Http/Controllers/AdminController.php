@@ -87,4 +87,97 @@ class AdminController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function get_user(Request $request)
+    {
+        $user = User::find($request->id);
+
+        if ($user->role->name == 'driver') {
+            return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'car' => $user->driver->car
+            ]);
+        }
+        return response()->json([
+            'status' => 'success',
+            'user' => $user,
+        ]);
+    }
+
+    public function edit_driver(Request $request)
+    {
+
+        $user = User::find($request->id);
+
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6',
+            'name' => 'required|string|max:255',
+            'model' => 'required|string',
+        ]);
+
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->name = $request->name;
+        $user->save();
+
+        $user->driver->car->model = $request->model;
+        $user->driver->car->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Profile Edited Successfuly',
+            'user' => $user
+        ]);
+    }
+
+    public function edit_user(Request $request)
+    {
+
+        $user = User::find($request->id);
+
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6',
+            'name' => 'required|string|max:255',
+        ]);
+
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->name = $request->name;
+        $user->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Profile Edited Successfuly',
+            'user' => $user
+        ]);
+    }
+
+    public function delete_user(Request $request)
+    {
+        $user = User::find($request->id);
+
+        if ($user) {
+            $user->delete();
+            return response()->json([
+                'message' => 'User deleted successfully',
+                'status' => 'success',
+            ], 200);
+        } else {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+    }
+
+    public function get_user_orders(Request $request)
+    {
+        $driver = Driver::where('user_id', $request->id)->first();
+        if ($driver) {
+            $userOrders = $driver->car_rides;
+            return response()->json(['orders' => $userOrders], 200);
+        } else {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+    }
 }

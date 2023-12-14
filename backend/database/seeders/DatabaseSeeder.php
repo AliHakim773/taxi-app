@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Car;
+use App\Models\CarRide;
 use App\Models\Driver;
 use App\Models\DriverRegisterRequest;
 use App\Models\Role;
@@ -135,6 +136,42 @@ class DatabaseSeeder extends Seeder
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'pending',
+        ]);
+        CarRide::create([
+            'user_id' => 4,
+            'driver_id' => 2,
+            'from_long' => '12345.22',
+            'from_lat' => '12345.22',
+            'to_long' => '12345.22',
+            'to_lat' => '12345.22',
+            'price' => 15,
+            'rate' => 4.5,
+            'duration' => '16:00:00',
+            'status' => 'pending',
+        ]);
+        CarRide::create([
+            'user_id' => 4,
+            'driver_id' => 2,
+            'from_long' => '12345.22',
+            'from_lat' => '12345.22',
+            'to_long' => '12345.22',
+            'to_lat' => '12345.22',
+            'price' => 15,
+            'rate' => 4.5,
+            'duration' => '12:00:00',
+            'status' => 'pending',
+        ]);
+        CarRide::create([
+            'user_id' => 4,
+            'driver_id' => 2,
+            'from_long' => '12345.22',
+            'from_lat' => '12345.22',
+            'to_long' => '12345.22',
+            'to_lat' => '12345.22',
+            'price' => 15,
+            'rate' => 4.5,
+            'duration' => '16:00:00',
+            'status' => 'pending',
         ]);
     }
 }
