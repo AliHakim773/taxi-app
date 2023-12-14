@@ -3,9 +3,6 @@ import Button from "../common/Button";
 import { useNavigate } from "react-router";
 export const CurrentUsersTable = ({ users, user_role }) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log(users);
-  }, []);
 
   return (
     <table>
@@ -36,7 +33,7 @@ export const CurrentUsersTable = ({ users, user_role }) => {
               <Button
                 text={"View"}
                 handleOnClick={() => {
-                  user_role === "drivers" ? navigate(`/viewDriver/${user.id}`) : navigate(`/viewPassenger/${user.id}`);
+                  user_role === "driver" ? navigate(`/viewDriver/${user.id}`) : navigate(`/viewPassenger/${user.id}`);
                 }}
                 type={"button"}
                 className="accept-btn"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
 import { DriverRequests } from "../../components/DriverRequests";
 import { CurrentUsersTable } from "../../components/CurrentUsersTable";
 import { requestData } from "../../core/axios";

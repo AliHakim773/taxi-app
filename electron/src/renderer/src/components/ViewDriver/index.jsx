@@ -31,7 +31,7 @@ export const ViewDriver = () => {
         <AnalyticCart className={"cart-sm-h"} title="Total Distance Covered" percent="10%" amount="10" />
         <AnalyticCart className={"cart-sm-h"} title="Average trip time" percent="10%" amount="10" />
       </div>
-      <OrdersTable></OrdersTable>
+      <OrdersTable id={id} />
     </div>
   );
 };

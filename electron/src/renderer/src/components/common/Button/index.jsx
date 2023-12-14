@@ -7,7 +7,8 @@ const Button = ({ text, handleOnClick, type, className }) => {
     <button
       type={type}
       className={`btn btn-primary ${className} `}
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault();
         handleOnClick();
       }}
     >
