@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function edit_driver(Request $request)
     {
-        $this->authorize('driver');
+        $this->authorize('admin');
         $user = Auth::user();
         // cant use $user->save() or any otger method unless I do this
         $user = User::find($user->id);
