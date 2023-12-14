@@ -1,4 +1,7 @@
 import React, { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { extractReceiverSlice, setReceiver } from "../../../core/redux/receiver/receiverSlice"
+import { useNavigate } from "react-router"
 import "./styles.css"
 import axios from "axios"
 function AvailableDrivers({
@@ -9,7 +12,11 @@ function AvailableDrivers({
     userLocation,
 }) {
     let drivers = availableDrivers
-
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const receiver = useSelector(extractReceiverSlice)
+    console.log('This is receiver')
+    console.log(receiver)
     function sendRequest(id, price, eta) {
         setDriverRequestStatusSent(false)
         let data = {
@@ -59,7 +66,7 @@ function AvailableDrivers({
                         </thead>
 
                         <tbody>
-                            {drivers?.map((driver) => {
+                            {drivers?.map((driver, index) => {
                                 return (
                                     <tr key={driver.driver_id}>
                                         <td>
@@ -84,6 +91,9 @@ function AvailableDrivers({
                                                     driver.price,
                                                     driver.eta
                                                 )
+                                                const { driver_id: id } = driver;
+                                                dispatch(setReceiver({ id }))
+                                                // navigate(`/chatroom/${id}`)
                                             }}>
                                             Select
                                         </button>

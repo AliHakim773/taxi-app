@@ -14,10 +14,6 @@ const SideBar = () => {
           <div className="right">{receiver.name}</div>
         </div>
         <div className="row">
-          <div className="left">Last name</div>
-          <div className="right">Rifaii</div>
-        </div>
-        <div className="row">
           <div className="left">Email</div>
           <div className="right">{receiver.email}</div>
         </div>
