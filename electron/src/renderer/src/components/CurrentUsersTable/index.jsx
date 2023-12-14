@@ -28,7 +28,7 @@ export const CurrentUsersTable = ({ users, user_role }) => {
             <td>{user.id}</td>
             <td>{user.name}</td>
             <td>{user.email}</td>
-            {user_role === "driver" && <td>{user.driver.car.model}</td>}
+            {user_role === "driver" && <td>{12}</td>}
             <td className="status flex">
               <Button
                 text={"View"}

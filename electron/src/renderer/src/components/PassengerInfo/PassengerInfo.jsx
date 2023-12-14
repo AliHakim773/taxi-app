@@ -3,6 +3,7 @@ import InputField from "../common/InputField";
 import Button from "../common/Button";
 import { useNavigate, useParams } from "react-router";
 import { requestData } from "../../core/axios";
+
 export const PassengerInfo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export const PassengerInfo = () => {
     password: "",
     name: "",
   });
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     const headers = {
@@ -20,14 +22,15 @@ export const PassengerInfo = () => {
     if (!token) {
       navigate("/");
     }
+
     const getUser = async () => {
       try {
         const user = await requestData("get_user", "post", { id: id }, headers);
-        if (user.status == "success") {
+        if (user.status === "success") {
           setValues({
             id: user.user.id,
             email: user.user.email,
-            password: user.user.email,
+            password: user.user.email, // <--- Check if this is intended
             name: user.user.name,
           });
         }
@@ -35,15 +38,11 @@ export const PassengerInfo = () => {
         console.log(e);
       }
     };
-    getUser();
-  }, []);
 
-  const HandleOnInputChange = (e) => {
-    setValues((prevValue) => ({ ...prevValue, [e.target.name]: e.target.value }));
-    console.log(values);
-  };
+    getUser(); // Invoke getUser
+  }, [id, navigate]); // Added id and navigate to dependencies
 
-  const handleEdit = async (e) => {
+  const handleEdit = async () => {
     const token = localStorage.getItem("token");
     const headers = {
       Authorization: token,
@@ -54,17 +53,19 @@ export const PassengerInfo = () => {
 
     console.log(values);
     try {
-      const res = await requestData("edit_driver", "post", values, headers);
+      const res = await requestData("edit_user", "post", values, headers);
 
-      if (res.status == "success") {
+      if (res.status === "success") {
         console.log("success");
       }
     } catch (err) {
       console.log(err);
     }
+
+    getUser(); // Invoke getUser
   };
 
-  const handleDelete = async (e) => {
+  const handleDelete = async () => {
     const token = localStorage.getItem("token");
     const headers = {
       Authorization: token,
@@ -75,13 +76,18 @@ export const PassengerInfo = () => {
     console.log(values);
     try {
       const res = await requestData("delete_user", "post", values, headers);
-      if (res.status == "success") {
+      if (res.status === "success") {
         console.log("Passenger Deleted Successfully");
         navigate("/passengers");
       }
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleOnInputChange = (e) => {
+    setValues((prevValue) => ({ ...prevValue, [e.target.name]: e.target.value }));
+    console.log(values);
   };
 
   return (
@@ -94,18 +100,18 @@ export const PassengerInfo = () => {
             <label htmlFor="id">Id</label>
             <InputField type={"text"} name={"id"} text={"Id"} value={values.id} />
             <label htmlFor="email">Email</label>
-            <InputField type={"email"} name={"email"} text={"Email"} value={values.email} handleChange={HandleOnInputChange} />
+            <InputField type={"email"} name={"email"} text={"Email"} value={values.email} handleChange={handleOnInputChange} />
           </div>
           <div className="right-inputs">
             <label htmlFor="name">Name</label>
-            <InputField type={"name"} name={"name"} text={"Name"} value={values.name} handleChange={HandleOnInputChange} />
+            <InputField type={"name"} name={"name"} text={"Name"} value={values.name} handleChange={handleOnInputChange} />
             <label htmlFor="password">Password</label>
             <InputField
               type={"password"}
               name={"password"}
               text={"Password"}
               value={values.password}
-              handleChange={HandleOnInputChange}
+              handleChange={handleOnInputChange}
             />
           </div>
         </div>
