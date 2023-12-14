@@ -1,15 +1,42 @@
 import React, { useEffect } from "react";
 import "./styles.css";
 import Loader from "../Loader";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { extractReceiverSlice, setReceiver } from "../../../core/redux/receiver/receiverSlice";
+import { useNavigate } from "react-router";
 function AcceptedRequest({ showAcceptScreen, requestStatus }) {
-  useEffect(() => {}, [showAcceptScreen]);
+  useEffect(() => { }, [showAcceptScreen]);
+  const receiver = useSelector(extractReceiverSlice)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  function getDriverId() {
+    console.log('Clicked')
+    fetch(`http://127.0.0.1:8000/api/getDriverId`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: JSON.stringify({ driver_id: receiver.id })
+    }).then(response => response.json())
+      .then(data => {
+        dispatch(setReceiver(data.user))
+        console.log(receiver)
+        navigate(`/chatroom/${data.user.id}`)
+      })
+  }
   return (
     <>
       {showAcceptScreen && (
         <div className="accepted-request">
           <p>Driver accepted your request and is on the way!</p>
           <Loader />
-          <button className="btn-animated chat_btn">
+          <button className="btn-animated chat_btn" onClick={() => {
+            getDriverId()
+          }}>
+            {/* here */}
             <span class="btn__visible">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
 
         ]);
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'driver1@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
 
         ]);
@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'driver2@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
 
         ]);
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'passenger1@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
 
         ]);
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'passenger2@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
         ]);
         User::factory()->create([
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'passenger3@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
         ]);
         User::factory()->create([
@@ -96,7 +96,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'passenger4@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+
+            'img_url' => 'upload/default.jpg',
+
             'phone_number' => 12355,
         ]);
         Driver::create([
@@ -132,9 +134,11 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
             'phone_number' => 71000000,
             'location' => 'beirut',
-            'img_url' => 'upload/default.png',
-            'model' => 'model',
-            'car_name' => 'some car bro',
+
+            'img_url' => 'uploads/default.jpg',
+            'car_name' => 'tyoyota',
+            'model' => 15,
+
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'pending',
@@ -145,9 +149,11 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
             'phone_number' => 71000000,
             'location' => 'beirut',
-            'img_url' => 'upload/default.png',
-            'car_name' => 'some car bro',
-            'model' => 'model',
+            'img_url' => 'uploads/default.jpg',
+            'car_name' =>
+            'tyoyota',
+            'model' => 15,
+
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'accepted',
@@ -158,9 +164,12 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
             'phone_number' => 71000000,
             'location' => 'beirut',
-            'img_url' => 'upload/default.png',
-            'model' => 'model',
-            'car_name' => 'some car bro',
+
+            'img_url' => 'uploads/default.jpg',
+            'car_name' =>
+            'tyoyota',
+            'model' => 15,
+
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'pending',
@@ -189,6 +198,7 @@ class DatabaseSeeder extends Seeder
             'duration' => 5,
             'status' => 'pending',
         ]);
+
         CarRide::create([
             'user_id' => 4,
             'driver_id' => 2,

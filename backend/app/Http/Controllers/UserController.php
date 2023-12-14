@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function edit_driver(Request $request)
     {
-        $this->authorize('driver');
+        $this->authorize('admin');
         $user = Auth::user();
         // cant use $user->save() or any otger method unless I do this
         $user = User::find($user->id);
@@ -44,7 +44,7 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
             'phone_number' => 'required|integer|min:3',
             'location' => 'required|string',
-            'model' => 'required|string',
+            'model' => 'required|integer',
             'color' => 'required|string',
             'plate_number' => 'required|string',
         ]);
@@ -115,5 +115,13 @@ class UserController extends Controller
         $user->save();
 
         return response()->json(['message' => 'Picture uploaded successfully', 'picture_path' => $picturePath]);
+    }
+    public function getDriverId(Request $request)
+    {
+        $user_id = Driver::find($request->driver_id)->user_id;
+        $user = User::find($user_id);
+        return response()->json([
+            'user' => $user
+        ]);
     }
 }
