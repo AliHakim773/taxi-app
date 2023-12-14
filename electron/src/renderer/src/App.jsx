@@ -8,7 +8,6 @@ import { ViewDriver } from "./components/ViewDriver";
 import ChatRoom from "./pages/ChatRoom/chatroom.component";
 import { Passengers } from "./pages/Passengers";
 import { ViewPassenger } from "./components/ViewPassenger";
-import { Analytics } from "./pages/Analytics";
 function App() {
   const location = useLocation();
   return (
@@ -23,7 +22,6 @@ function App() {
             <Route path="/viewdriver/:id" element={<ViewDriver />} />
             <Route path="/viewpassenger/:id" element={<ViewPassenger />} />
             <Route path="/passengers" element={<Passengers />} />
-            <Route path="/analytics" element={<Analytics />} />
             <Route path="/chat/:id" element={<ChatRoom />} />
           </Routes>
         </div>

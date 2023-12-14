@@ -7,10 +7,6 @@ table {
   border-top-right-radius: 15px;
 }
 
-.table-row {
-  display: flex;
-  align-items: center;
-}
 table th,
 table td {
   padding: 12px;
