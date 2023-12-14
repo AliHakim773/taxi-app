@@ -4,6 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -61,5 +64,30 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function driver(): HasOne
+    {
+        return $this->hasOne(Driver::class);
+    }
+
+    public function car_rides(): HasMany
+    {
+        return $this->hasMany(CarRide::class);
+    }
+
+    public function chat_messages(): HasMany
+    {
+        return $this->hasMany(ChatMessages::class);
+    }
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+    public function sentMessages(){
+        return $this->hasMany(ChatMessages::class,'sender_id');
+    }
+    public function receivedMessages(){
+        return $this->hasMany(ChatMessages::class,'receiver_id');
     }
 }
