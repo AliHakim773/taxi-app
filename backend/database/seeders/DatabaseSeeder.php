@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1,
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
-            'location' => 'somewhere',
+            'location' => 'beirut',
             'img_url' => 'img.png',
             'phone_number' => 12355,
 
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 3,
             'email' => 'driver1@example.com',
             'password' => Hash::make('password'),
-            'location' => 'somewhere',
+            'location' => 'beirut',
             'img_url' => 'img.png',
             'phone_number' => 12355,
 
@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 3,
             'email' => 'driver2@example.com',
             'password' => Hash::make('password'),
-            'location' => 'somewhere',
+            'location' => 'beirut',
             'img_url' => 'img.png',
             'phone_number' => 12355,
 
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 2,
             'email' => 'passenger1@example.com',
             'password' => Hash::make('password'),
-            'location' => 'somewhere',
+            'location' => 'beirut',
             'img_url' => 'img.png',
             'phone_number' => 12355,
 
@@ -77,7 +77,34 @@ class DatabaseSeeder extends Seeder
             'role_id' => 2,
             'email' => 'passenger2@example.com',
             'password' => Hash::make('password'),
-            'location' => 'somewhere',
+            'location' => 'beirut',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+        ]);
+        User::factory()->create([
+            'name' => 'Passenger 3',
+            'role_id' => 2,
+            'email' => 'passenger3@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'beirut',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+        ]);
+        User::factory()->create([
+            'name' => 'Passenger 4',
+            'role_id' => 2,
+            'email' => 'passenger4@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'beirut',
+            'img_url' => 'img.png',
+            'phone_number' => 12355,
+        ]);
+        User::factory()->create([
+            'name' => 'Driver 3',
+            'role_id' => 3,
+            'email' => 'driver3@example.com',
+            'password' => Hash::make('password'),
+            'location' => 'beirut',
             'img_url' => 'img.png',
             'phone_number' => 12355,
         ]);
@@ -87,17 +114,24 @@ class DatabaseSeeder extends Seeder
         ]);
         Driver::create([
             'user_id' => 3,
-            'availability' => 'non_active'
+            'availability' => 'active'
         ]);
+        // Driver::create([
+        //     'user_id' => 8,
+        //     'availability' => 'active'
+        // ]);
         Car::create([
             'driver_id' => 1,
-            'model' => 'A1',
+            'name' => 'some car bro',
+            'model' => 2018,
             'color' => 'red',
             'plate_number' => 'yolomolo'
         ]);
         Car::create([
             'driver_id' => 2,
-            'model' => 'B2',
+            'name' =>
+            'some white car bro',
+            'model' => 2009,
             'color' => 'white',
             'plate_number' => 'Nadim'
         ]);

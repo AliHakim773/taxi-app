@@ -19,6 +19,7 @@ const EditDriverProfileForm = () => {
         confirmPassword: "",
         location: "",
         phone_number: "",
+        car_name: "",
         model: "",
         color: "",
         plate_number: "",
@@ -37,6 +38,7 @@ const EditDriverProfileForm = () => {
             try {
                 const res = await requestData("get_user", "get", {}, headers)
                 if (res.status == "success") {
+                    dispatch(setUser(res.user))
                     setValues({
                         name: res.user.name,
                         email: res.user.email,
@@ -44,6 +46,7 @@ const EditDriverProfileForm = () => {
                         confirmPassword: "",
                         location: res.user.location,
                         phone_number: res.user.phone_number,
+                        car_name: res.car.name,
                         model: res.car.model,
                         color: res.car.color,
                         plate_number: res.car.plate_number,
@@ -172,15 +175,15 @@ const EditDriverProfileForm = () => {
                     <InputField
                         type={"text"}
                         name={"model"}
-                        text={"Car Model"}
-                        value={values.model}
+                        text={"Car Name"}
+                        value={values.car_name}
                         handleChange={HandleOnInputChange}
                     />
                     <InputField
-                        text={"Plate Number"}
                         type={"text"}
-                        name={"plate_number"}
-                        value={values.plate_number}
+                        name={"model"}
+                        text={"Car Model"}
+                        value={values.model}
                         handleChange={HandleOnInputChange}
                     />
                 </div>
@@ -190,6 +193,13 @@ const EditDriverProfileForm = () => {
                         type={"text"}
                         name={"color"}
                         value={values.color}
+                        handleChange={HandleOnInputChange}
+                    />
+                    <InputField
+                        text={"Plate Number"}
+                        type={"text"}
+                        name={"plate_number"}
+                        value={values.plate_number}
                         handleChange={HandleOnInputChange}
                     />
                 </div>
