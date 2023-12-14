@@ -2,6 +2,10 @@ import React from "react"
 import "./styles.css"
 import AcceptedRequest from "../../CustomerPage/AcceptedRequest"
 import RejectedRequest from "../../CustomerPage/RejectedRequest"
+import { useDispatch, useSelector } from "react-redux"
+import { setReceiver, extractReceiverSlice } from "../../../core/redux/receiver/receiverSlice"
+import { useNavigate } from 'react-router-dom'
+import { useState } from "react"
 import axios from "axios"
 function ShowRequests({
     setshowMaps,
@@ -62,6 +66,11 @@ function ShowRequests({
                 console.log(response)
             })
     }
+    const [pass, setInfo] = useState({})
+    const dispatch = useDispatch()
+    const receiver = useSelector(extractReceiverSlice)
+    console.log('This is receiver')
+    console.log(receiver)
     function refresh() {
         axios
             .get("http://127.0.0.1:8000/api/get-ride-request", {
@@ -74,9 +83,12 @@ function ShowRequests({
             .then((response) => {
                 console.log(response.data)
                 setPassInfo(response.data.passenger_info)
+                setInfo(response.data.passenger_Info)
                 setreqInfo(response.data.request)
             })
     }
+
+    const navigate = useNavigate();
     return (
         <>
             <div className='driver-requests'>
@@ -147,6 +159,21 @@ function ShowRequests({
                                                     finishRequest()
                                                 }}>
                                                 FINISH
+                                            </button>
+                                            <button
+                                                className='finish-request'
+                                                onClick={() => {
+                                                    const id = passInfo[0].id;
+                                                    // console.log(id)
+                                                    if (id) {
+                                                        navigate(`/chatroom/${id}`)
+                                                    } else {
+                                                        console.log(passInfo)
+                                                    }
+                                                    dispatch(setReceiver(passInfo[0]))
+                                                    console.log(receiver)
+                                                }}>
+                                                CHAT
                                             </button>
                                         </tr>
                                     )

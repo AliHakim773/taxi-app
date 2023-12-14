@@ -1,16 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-  id: 3,
+  id: '',
+  name: '',
+  lastname: '',
+  email: "",
+  img_url: ""
+
 }
 export const receiverSlice = createSlice({
   name: "receiver",
   initialState,
   reducers: {
     setReceiver(state, action) {
-      const { id } = action.payload
+      const { id, name, email, img_url } = action.payload
       return {
-        id
+        id,
+        name,
+        email,
+        img_url
       }
     },
     clearReceiver(state, action) {

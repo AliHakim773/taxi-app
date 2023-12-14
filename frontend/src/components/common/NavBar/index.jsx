@@ -29,7 +29,7 @@ const NavBar = () => {
                     dispatch(setUser(res.user))
                     setIsLoggedIn(true)
                 }
-            } catch (err) {}
+            } catch (err) { }
         }
         refresh()
     }, [])
@@ -65,13 +65,8 @@ const NavBar = () => {
                     )}
 
                     <li>
-                        <Link to={"/contact"} className='nav-item'>
-                            Contact us
-                        </Link>
-                    </li>
-                    <li>
                         <Link to={"/chatroom"} className='nav-item'>
-                            ChatRoom
+                            Contact us
                         </Link>
                     </li>
                     {isLoggedIn ? (

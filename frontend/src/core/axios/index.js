@@ -34,6 +34,7 @@ export const getMessages = async (route, method, data = null, headers = {}) => {
 }
 export const postMessage = async (route, method, data, headers = {}) => {
     console.log(data)
+    console.log(headers)
     try {
         const response = await axios.request({
             url: `http://127.0.0.1:8000/api/${route}`,
@@ -41,6 +42,8 @@ export const postMessage = async (route, method, data, headers = {}) => {
             headers: {
                 "Content-Type": "application/json",
                 ...headers,
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": localStorage.getItem('token')
             },
             data,
         })

@@ -22,6 +22,8 @@ function App() {
                 <Route path='/contact' element={<ChatRoom />} />
                 <Route path='/customer' element={<CustomerPage />} />
                 <Route path='/driver' element={<DriverPage />} />
+                <Route path='/chatroom' element={<ChatRoom />} />
+                <Route path='/chatroom/:id' element={<ChatRoom />} />
             </Routes>
         </div>
     )
