@@ -9,6 +9,7 @@ import './style.css'
 const Chat = () => {
   const dispatch = useDispatch()
   const receiver = useSelector(extractReceiverSlice)
+  // dslfjlkasdjf
   const userState = useSelector(extractUserSlice)
   const { id } = useParams()
   console.log(userState.id, id)
