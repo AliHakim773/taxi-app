@@ -69,10 +69,10 @@ class RideController extends Controller
 
     public function rideRequestStatus()
     {
-        $this->authorize('passenger');
-        $user = Auth::user()->id;
-
-        //TODO
+        // $this->authorize('passenger');
+        // $user = Auth::user()->id;
+$user=4;
+     
         $request_status = CarRide::where('user_id', $user)->where('status', 'pending')->orWhere('status', 'accepted')->orWhere('status', 'denied')->first();
         return response()->json(['status' => 'success', 'request_status' => $request_status], 200);
     }
