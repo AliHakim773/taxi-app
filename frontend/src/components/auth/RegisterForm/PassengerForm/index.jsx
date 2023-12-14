@@ -85,6 +85,7 @@ const PassengerForm = () => {
             </div>
             <div className='registerform-pair'>
                 <InputField
+                    className='input-field-reg'
                     type={"text"}
                     name={"phone_number"}
                     text={"Phone Number"}
@@ -97,6 +98,9 @@ const PassengerForm = () => {
                     id={"location"}
                     value={values.location}
                     onChange={HandleOnInputChange}>
+                    <option selected hidden>
+                        Select Location
+                    </option>
                     <option value='beirut'>Beirut</option>
                     <option value='tripoli'>Tripoli</option>
                     <option value='batroun'>Batroun</option>
