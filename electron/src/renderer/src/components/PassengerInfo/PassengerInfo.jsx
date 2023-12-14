@@ -54,7 +54,7 @@ export const PassengerInfo = () => {
 
     console.log(values);
     try {
-      const res = await requestData("edit_driver", "post", values, headers);
+      const res = await requestData("edit_user", "post", values, headers);
 
       if (res.status == "success") {
         console.log("success");
