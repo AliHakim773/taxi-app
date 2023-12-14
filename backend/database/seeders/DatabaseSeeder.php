@@ -96,7 +96,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'passenger4@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
+
             'img_url' => 'upload/default.jpg',
+
             'phone_number' => 12355,
         ]);
         Driver::create([
@@ -132,9 +134,11 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
             'phone_number' => 71000000,
             'location' => 'beirut',
+
             'img_url' => 'uploads/default.jpg',
             'car_name' => 'tyoyota',
             'model' => 15,
+
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'pending',
@@ -149,6 +153,7 @@ class DatabaseSeeder extends Seeder
             'car_name' =>
             'tyoyota',
             'model' => 15,
+
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'accepted',
@@ -159,10 +164,12 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
             'phone_number' => 71000000,
             'location' => 'beirut',
+
             'img_url' => 'uploads/default.jpg',
             'car_name' =>
             'tyoyota',
             'model' => 15,
+
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'pending',

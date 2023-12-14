@@ -35,6 +35,7 @@ class AdminController extends Controller
             // $car = $passenger->car;
             $user = $passenger->driver->car;
         }
+
         return response()->json([
             'status' => 'success',
             'drivers' => $passengers,
@@ -76,10 +77,13 @@ class AdminController extends Controller
         $passenger->save();
 
         $car = new Car();
-        $car->model = $passenger_request->model;
-        $car->color = $passenger_request->color;
-        $car->plate_number = $passenger_request->plate_number;
-        $car->driver_id = $passenger->id;
+
+        $car->name = $driver_request->name;
+        $car->model = $driver_request->model;
+        $car->color = $driver_request->color;
+        $car->plate_number = $driver_request->plate_number;
+        $car->driver_id = $driver->id;
+
         $car->save();
 
         return response()->json([
