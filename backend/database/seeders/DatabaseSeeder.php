@@ -99,15 +99,6 @@ class DatabaseSeeder extends Seeder
             'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
         ]);
-        User::factory()->create([
-            'name' => 'Driver 3',
-            'role_id' => 3,
-            'email' => 'driver3@example.com',
-            'password' => Hash::make('password'),
-            'location' => 'beirut',
-            'img_url' => 'upload/default.jpg',
-            'phone_number' => 12355,
-        ]);
         Driver::create([
             'user_id' => 2,
             'availability' => 'active'
