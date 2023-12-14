@@ -58,6 +58,7 @@ Route::prefix('admin/')->group((function () {
         Route::get('get_all_drivers', 'getAllDrivers');
         Route::get('get_all_passengers', 'getAllPassengers');
         Route::post('approve', 'approve');
+        Route::post('deny', 'deny');
         Route::post('get_user', 'get_user');
         Route::post('edit_driver', 'edit_driver');
         Route::post('delete_user', 'delete_user');

@@ -31,9 +31,16 @@ class AdminController extends Controller
     {
         $this->authorize('admin');
         $passengers = User::where('role_id', 3)->get();
+
+        $drivers = [];
         foreach ($passengers as $passenger) {
-            // $car = $passenger->car;
-            $user = $passenger->driver->car;
+            if ($passenger->driver && $passenger->driver->car) {
+                $car = $passenger->driver->car;
+                $drivers[] = [
+                    'user' => $passenger,
+                    'car' => $car,
+                ];
+            }
         }
         return response()->json([
             'status' => 'success',
@@ -77,6 +84,7 @@ class AdminController extends Controller
 
         $car = new Car();
         $car->model = $passenger_request->model;
+        $car->name = $passenger_request->name;
         $car->color = $passenger_request->color;
         $car->plate_number = $passenger_request->plate_number;
         $car->driver_id = $passenger->id;
@@ -88,6 +96,22 @@ class AdminController extends Controller
         ]);
     }
 
+    public function deny(Request $request)
+    {
+        $this->authorize('admin');
+        $passenger_request = DriverRegisterRequest::where('id', $request->id)->first();
+
+        if (!$passenger_request) {
+            return response()->json(['error' => "Driver registration request not found"], 404);
+        }
+
+        if ($passenger_request->request_status == 'accepted') {
+            return response()->json(['error' => "This driver has already been accepted"], 406);
+        }
+
+        $passenger_request->delete();
+        return response()->json(['status' => 'success', 'message' => 'Driver request denied'], 200);
+    }
     public function get_user(Request $request)
     {
         $user = User::find($request->id);
@@ -109,12 +133,11 @@ class AdminController extends Controller
     {
 
         $user = User::find($request->id);
-
         $request->validate([
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
             'name' => 'required|string|max:255',
-            'model' => 'required|string',
+            'model' => 'required|integer',
         ]);
 
         $user->email = $request->email;
@@ -122,7 +145,7 @@ class AdminController extends Controller
         $user->name = $request->name;
         $user->save();
 
-        $user->driver->car->model = $request->model;
+        $user->driver->car = $request->model;
         $user->driver->car->save();
 
         return response()->json([
