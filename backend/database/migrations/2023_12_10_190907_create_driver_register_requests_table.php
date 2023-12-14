@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('location', ['beirut', 'tripoli', 'batroun', 'sayda', 'chouf', 'south']);
             $table->string('img_url');
             $table->string('car_name');
-            $table->string('model');
+            $table->integer('model');
             $table->string('color');
             $table->string('plate_number');
             $table->enum('request_status', ['pending', 'accepted']);

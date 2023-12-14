@@ -7,7 +7,7 @@ export const AnalyticCart = ({ className, title, percent, amount }) => {
         <h3 className={className}>{title}</h3>
         <p>{percent}</p>
       </div>
-      <p>{amount}</p>
+      <p className="cart-amount">{amount}</p>
     </div>
   );
 };

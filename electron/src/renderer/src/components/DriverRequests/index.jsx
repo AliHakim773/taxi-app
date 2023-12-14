@@ -20,6 +20,19 @@ export const DriverRequests = ({ users }) => {
     const result = await requestData("approve", "post", { id }, headers);
     navigate(0);
   };
+  const handleDeny = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not available");
+      setIsLoggedIn(false);
+      return;
+    }
+    const headers = {
+      Authorization: token,
+    };
+    const result = await requestData("deny", "post", { id }, headers);
+    navigate(0);
+  };
 
   return (
     <table>
@@ -53,7 +66,7 @@ export const DriverRequests = ({ users }) => {
             <td>{driver.plate_number}</td>
             <td className="status flex">
               <Button text={"Accept"} handleOnClick={() => handleAccept(driver.id)} className="accept-btn" />
-              <Button text={"Deny"} handleOnClick={() => handleDeny()} className={"accept-btn"} />
+              <Button text={"Deny"} handleOnClick={() => handleDeny(driver.id)} className={"accept-btn"} />
             </td>
           </tr>
         ))}

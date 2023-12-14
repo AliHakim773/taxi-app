@@ -23,7 +23,6 @@ export const Sidebar = () => {
             <li onClick={() => navigate("/passengers")}>Passengers</li>
           </ul>
         </li>
-        <li onClick={() => navigate("/analytics")}>Analytics</li>
       </ul>
     </div>
   ) : (
