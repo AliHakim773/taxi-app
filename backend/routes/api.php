@@ -64,6 +64,7 @@ Route::prefix('admin/')->group((function () {
         Route::post('get_user_orders', 'get_user_orders');
         Route::post('edit_user', 'edit_user');
         Route::post('driver_analytics', 'driver_analytics');
+        Route::post('passenger_analytics', 'passenger_analytics');
     }));
 }));
 Route::post('/get-available-drivers', [DriversController::class, 'getAvailableDrivers']);

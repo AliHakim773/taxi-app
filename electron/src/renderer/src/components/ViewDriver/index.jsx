@@ -32,28 +32,24 @@ export const ViewDriver = () => {
     };
     driver_analytics();
   }, []);
+
   return (
     <div className="content-container">
       <BackButton />
       <UserInfo id={id} />
       <div className="flex cards-row">
-        <AnalyticCart title="Orders/Day" percent="10%" amount="10" />
-        <AnalyticCart title="Orders/Month" percent="10%" amount="10" />
-        <AnalyticCart title="Total Orders" percent="10%" amount="10" />
-        <AnalyticCart title="Cancelled Orderes" percent="10%" amount="10" />
+        <AnalyticCart title="Orders/Day" percent="⬆23%" amount={analytics.average_orders_per_day} />
+        <AnalyticCart title="Orders/Month" percent="⬆11%" amount={analytics.average_orders_per_month} />
+        <AnalyticCart title="Total Orders" percent="⬆60%" amount={analytics.total_orders} />
+        <AnalyticCart title="Cancelled Orderes" percent="⬆35%" amount={analytics.canceled_orders} />
       </div>
       <div className="flex cards-row">
-        <AnalyticCart title="Profit/Day" percent="10%" amount="10" />
-        <AnalyticCart title="Profit/Month" percent="10%" amount="10" />
-        <AnalyticCart title="Total profit" percent="10%" amount="10" />
-        <AnalyticCart title="Average Rating" percent="10%" amount="10" />
+        <AnalyticCart title="Profit/Day" percent="⬆44%" amount={analytics.average_profit_per_day} />
+        <AnalyticCart title="Profit/Month" percent="⬆5%" amount={analytics.average_profit_per_month} />
+        <AnalyticCart title="Total profit" percent="⬆32%" amount={analytics.total_profit} />
+        <AnalyticCart title="Average Rating" percent="⬆10%" amount={analytics.average_rating} />
       </div>
-      <div className="flex cards-row">
-        <AnalyticCart className={"cart-sm-h"} title="Distance Travelled/Day" percent="10%" amount="10" />
-        <AnalyticCart className={"cart-sm-h"} title="Distance Travelled/Month" percent="10%" amount="10" />
-        <AnalyticCart className={"cart-sm-h"} title="Total Distance Covered" percent="10%" amount="10" />
-        <AnalyticCart className={"cart-sm-h"} title="Average trip time" percent="10%" amount="10" />
-      </div>
+
       <OrdersTable id={id} />
     </div>
   );
