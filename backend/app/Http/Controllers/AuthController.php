@@ -82,6 +82,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
             'phone_number' => 'required|string|min:3',
             'location' => 'required|string',
+            'car_name' => 'required|string',
             'model' => 'required|string',
             'color' => 'required|string',
             'plate_number' => 'required|string',
@@ -94,6 +95,7 @@ class AuthController extends Controller
         $user->phone_number = $request->phone_number;
         $user->location = $request->location;
         $user->img_url = "uploads/default.jpg";
+        $user->car_name = $request->car_name;
         $user->color = $request->color;
         $user->model = $request->model;
         $user->plate_number = $request->plate_number;

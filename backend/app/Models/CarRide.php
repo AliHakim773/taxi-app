@@ -12,6 +12,8 @@ class CarRide extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'driver_id', 'from_long', 'from_lat', 'to_long', 'to_lat', 'price', 'rate', 'duration', 'status'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -20,10 +22,5 @@ class CarRide extends Model
     public function driver(): BelongsTo
     {
         return $this->belongsTo(Driver::class);
-    }
-
-    public function routes(): HasMany
-    {
-        return $this->hasMany(Route::class);
     }
 }

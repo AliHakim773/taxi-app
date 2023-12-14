@@ -5,9 +5,9 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminAuthController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\DriversController;
+use App\Http\Controllers\RideController;
 use Illuminate\Support\Facades\Route;
-use PHPUnit\Event\Code\TestCollectionIterator;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +47,6 @@ Route::controller(UserController::class)->group((function () {
     Route::post('upload_pic', 'upload_pic');
 }));
 
-
-
 Route::prefix('admin/')->group((function () {
     Route::controller(AdminAuthController::class)->group((function () {
         Route::post('login', 'login');
@@ -67,4 +65,14 @@ Route::prefix('admin/')->group((function () {
         Route::post('edit_user', 'edit_user');
         Route::post('driver_analytics', 'driver_analytics');
     }));
+
+Route::post('/get-available-drivers', [DriversController::class, 'getAvailableDrivers']);
+Route::controller(RideController::class)->group((function () {
+    Route::post('/create-ride-request',  'createRideRequest');
+    Route::post('/ride-request-status',  'rideRequestStatus');
+    Route::get('/get-ride-request',  'getRideRequest');
+    Route::get('/accept-request-ride',  'acceptRequestRide');
+    Route::get('/finish-request-ride',  'finishRequestRide');
+    Route::get('/reject-request-ride',  'rejectRequestRide');
+
 }));
