@@ -120,7 +120,7 @@ function ShowRequests({
                             </thead>
 
                             <tbody>
-                                {requests?.map((request) => {
+                                {requests?.map((request, index) => {
                                     return (
                                         <tr key={request.id}>
                                             <td>
@@ -163,14 +163,15 @@ function ShowRequests({
                                             <button
                                                 className='finish-request'
                                                 onClick={() => {
-                                                    const id = passInfo[0].id;
+                                                    const id = passInfo[index].id;
                                                     // console.log(id)
+                                                    console.log(passInfo)
                                                     if (id) {
                                                         navigate(`/chatroom/${id}`)
                                                     } else {
                                                         console.log(passInfo)
                                                     }
-                                                    dispatch(setReceiver(passInfo[0]))
+                                                    dispatch(setReceiver(passInfo[index]))
                                                     console.log(receiver)
                                                 }}>
                                                 CHAT
