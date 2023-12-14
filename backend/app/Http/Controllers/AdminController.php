@@ -180,4 +180,39 @@ class AdminController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
     }
+
+    public function driver_analytics(Request $request)
+    {
+        $driver = Driver::where('user_id', $request->id)->first();
+
+        $distinctDaysCount = $driver->car_rides()
+            ->selectRaw('COUNT(DISTINCT DATE(created_at)) as count')
+            ->value('count');
+
+        $distinctMonthsCount = $driver->car_rides()
+            ->selectRaw('COUNT(DISTINCT YEAR(created_at), MONTH(created_at)) as count')
+            ->value('count');
+
+        $totalOrders = $driver->car_rides()->count();
+        $averageOrdersPerDay = $totalOrders / $distinctDaysCount;
+        $averageOrdersPerMonth = $totalOrders / $distinctMonthsCount;
+        $canceledOrders = $driver->car_rides()->where('status', 'canceled')->count();
+        $totalProfit = $driver->car_rides()->sum('price');
+        $averageProfitPerDay = $totalProfit / $driver->car_rides()->selectRaw('COUNT(DISTINCT DATE(created_at))')->count();
+        $averageProfitPerMonth = $totalProfit / $driver->car_rides()->selectRaw('COUNT(DISTINCT YEAR(created_at), MONTH(created_at))')->count();
+        $averageRating = $driver->car_rides()->avg('rate');
+        $averageTripTime = $driver->car_rides()->avg('duration');
+
+        return response()->json([
+            'total_orders' => $totalOrders,
+            'canceled_orders' => $canceledOrders,
+            'average_orders_per_day' => $averageOrdersPerDay,
+            'average_orders_per_month' => $averageOrdersPerMonth,
+            'total_profit' => $totalProfit,
+            'average_profit_per_day' => $averageProfitPerDay,
+            'average_profit_per_month' => $averageProfitPerMonth,
+            'average_rating' => $averageRating,
+            'average_trip_time' => $averageTripTime,
+        ], 200);
+    }
 }

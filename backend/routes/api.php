@@ -65,5 +65,6 @@ Route::prefix('admin/')->group((function () {
         Route::post('delete_user', 'delete_user');
         Route::post('get_user_orders', 'get_user_orders');
         Route::post('edit_user', 'edit_user');
+        Route::post('driver_analytics', 'driver_analytics');
     }));
 }));
