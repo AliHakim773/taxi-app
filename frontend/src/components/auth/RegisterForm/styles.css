@@ -74,6 +74,7 @@ span {
 }
 .editform-pair,
 .registerform-pair {
+    width: 100%;
     display: flex;
     gap: 70px;
 }
@@ -81,4 +82,8 @@ span {
     align-self: center;
     margin-top: 30px;
     width: 400px;
+}
+.select-input,
+.input-field-reg {
+    width: calc(50% - 35px);
 }

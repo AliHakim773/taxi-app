@@ -2,13 +2,10 @@ import React, { useState } from "react"
 import InputField from "../../../common/InputField"
 import Button from "../../../common/Button"
 import { Link, useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { setUser } from "../../../../core/redux/user/userSlice"
 import { requestData } from "../../../../core/axios"
 
 const DriverForm = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
 
     const [error, setError] = useState({ msg: "", status: false })
     const [values, setValues] = useState({
@@ -16,7 +13,7 @@ const DriverForm = () => {
         email: "",
         password: "",
         confirmPassword: "",
-        location: "",
+        location: "beirut",
         phone_number: "",
         car_name: "",
         model: "",
@@ -40,6 +37,10 @@ const DriverForm = () => {
         try {
             const res = await requestData("register_driver", "post", values)
             if (res.status == "success") {
+                Notification.requestPermission().then((perm) => {
+                    if (perm === "granted")
+                        new Notification("Your request is now pending")
+                })
                 navigate("/")
             }
         } catch (err) {
@@ -123,7 +124,12 @@ const DriverForm = () => {
                     value={values.plate_number}
                     handleChange={HandleOnInputChange}
                 />
-                <select>
+                <select
+                    className='select-input'
+                    name={"location"}
+                    id={"location"}
+                    value={values.location}
+                    onChange={HandleOnInputChange}>
                     <option value='beirut'>Beirut</option>
                     <option value='tripoli'>Tripoli</option>
                     <option value='batroun'>Batroun</option>
@@ -131,13 +137,6 @@ const DriverForm = () => {
                     <option value='chouf'>Chouf</option>
                     <option value='south'>South</option>
                 </select>
-                <InputField
-                    type={"text"}
-                    name={"location"}
-                    text={"Location"}
-                    value={values.location}
-                    handleChange={HandleOnInputChange}
-                />
             </div>
             {error.status ? <span className='error'>{error.msg}</span> : ""}
             <div className='submit-btn-wrapper'>

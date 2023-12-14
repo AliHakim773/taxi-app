@@ -85,19 +85,29 @@ const PassengerForm = () => {
             </div>
             <div className='registerform-pair'>
                 <InputField
-                    type={"text"}
-                    name={"location"}
-                    text={"Location"}
-                    value={values.location}
-                    handleChange={HandleOnInputChange}
-                />
-                <InputField
+                    className='input-field-reg'
                     type={"text"}
                     name={"phone_number"}
                     text={"Phone Number"}
                     value={values.phone_number}
                     handleChange={HandleOnInputChange}
                 />
+                <select
+                    className='select-input'
+                    name={"location"}
+                    id={"location"}
+                    value={values.location}
+                    onChange={HandleOnInputChange}>
+                    <option selected hidden>
+                        Select Location
+                    </option>
+                    <option value='beirut'>Beirut</option>
+                    <option value='tripoli'>Tripoli</option>
+                    <option value='batroun'>Batroun</option>
+                    <option value='sayda'>Sayda</option>
+                    <option value='chouf'>Chouf</option>
+                    <option value='south'>South</option>
+                </select>
             </div>
             {error.status ? <span className='error'>{error.msg}</span> : ""}
             <div className='submit-btn-wrapper'>
