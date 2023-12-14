@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BackButton } from "../common/BackButton";
 import { drivers } from "../../core/mockData";
@@ -6,9 +6,32 @@ import "./style.css";
 import { AnalyticCart } from "../common/AnalyticCart";
 import { OrdersTable } from "../OrdersTable";
 import { UserInfo } from "../UserInfo";
+import { requestData } from "../../core/axios";
 export const ViewDriver = () => {
   const { id } = useParams();
+  const [analytics, setAnalytics] = useState([]);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const header = {
+      Authorization: token,
+    };
 
+    if (!token) {
+      console.error("Token not available");
+      return;
+    }
+
+    const driver_analytics = async () => {
+      try {
+        const results = await requestData("driver_analytics", "post", { id }, header);
+        setAnalytics(results);
+        console.log(results);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    driver_analytics();
+  }, []);
   return (
     <div className="content-container">
       <BackButton />
