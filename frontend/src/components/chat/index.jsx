@@ -4,9 +4,11 @@ import Input from '../input'
 import { useState, useEffect } from 'react'
 import MessagesContainer from '../messagesContainer/messages-container.component'
 import { useParams } from 'react-router-dom'
+import { extractReceiverSlice } from "../../core/redux/receiver/receiverSlice"
 import './style.css'
 const Chat = () => {
   const dispatch = useDispatch()
+  const receiver = useSelector(extractReceiverSlice)
   const userState = useSelector(extractUserSlice)
   const { id } = useParams()
   console.log(userState.id, id)
@@ -14,7 +16,7 @@ const Chat = () => {
     <div className="chat">
       <header>
         <div className="logo"></div>
-        <div className="name">Nadim Rifaii</div>
+        <div className="name">{receiver.name}</div>
       </header>
       <div className="holder">
         <MessagesContainer receiverId={id} userId={userState.id} />
