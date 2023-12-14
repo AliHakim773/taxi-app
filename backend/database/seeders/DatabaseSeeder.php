@@ -134,7 +134,7 @@ class DatabaseSeeder extends Seeder
             'location' => 'beirut',
             'img_url' => 'uploads/default.jpg',
             'car_name' => 'tyoyota',
-            'model' => 'model',
+            'model' => 15,
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'pending',
@@ -148,7 +148,7 @@ class DatabaseSeeder extends Seeder
             'img_url' => 'uploads/default.jpg',
             'car_name' =>
             'tyoyota',
-            'model' => 'model',
+            'model' => 15,
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'accepted',
@@ -162,7 +162,7 @@ class DatabaseSeeder extends Seeder
             'img_url' => 'uploads/default.jpg',
             'car_name' =>
             'tyoyota',
-            'model' => 'model',
+            'model' => 15,
             'color' => 'color',
             'plate_number' => 'plate_number',
             'request_status' => 'pending',
