@@ -104,7 +104,22 @@ class AdminController extends Controller
             'user' => $user,
         ]);
     }
+    public function deny(Request $request)
+    {
+        $this->authorize('admin');
+        $passenger_request = DriverRegisterRequest::where('id', $request->id)->first();
 
+        if (!$passenger_request) {
+            return response()->json(['error' => "Driver registration request not found"], 404);
+        }
+
+        if ($passenger_request->request_status == 'accepted') {
+            return response()->json(['error' => "This driver has already been accepted"], 406);
+        }
+
+        $passenger_request->delete();
+        return response()->json(['status' => 'success', 'message' => 'Driver request denied'], 200);
+    }
     public function edit_driver(Request $request)
     {
 
@@ -114,7 +129,7 @@ class AdminController extends Controller
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
             'name' => 'required|string|max:255',
-            'model' => 'required|string',
+            'model' => 'required|integer',
         ]);
 
         $user->email = $request->email;
