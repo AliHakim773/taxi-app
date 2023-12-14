@@ -116,4 +116,12 @@ class UserController extends Controller
 
         return response()->json(['message' => 'Picture uploaded successfully', 'picture_path' => $picturePath]);
     }
+    public function getDriverId(Request $request)
+{
+    $user_id=Driver::find($request->driver_id)->user_id;
+    $user=User::find($user_id);
+    return response()->json([
+        'user'=>$user
+    ]);
+}
 }

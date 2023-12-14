@@ -45,6 +45,7 @@ Route::controller(UserController::class)->group((function () {
     Route::post('edit_driver', 'edit_driver');
     Route::post('edit_passenger', 'edit_passenger');
     Route::post('upload_pic', 'upload_pic');
+            Route::post('getDriverId','getDriverId');
 }));
 
 Route::prefix('admin/')->group((function () {
@@ -64,6 +65,7 @@ Route::prefix('admin/')->group((function () {
         Route::post('get_user_orders', 'get_user_orders');
         Route::post('edit_user', 'edit_user');
         Route::post('driver_analytics', 'driver_analytics');
+
     }));
 }));
 Route::post('/get-available-drivers', [DriversController::class, 'getAvailableDrivers']);
