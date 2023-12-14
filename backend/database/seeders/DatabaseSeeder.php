@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
 
         ]);
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'driver1@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
 
         ]);
@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'driver2@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
 
         ]);
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'passenger1@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
 
         ]);
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'passenger2@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
         ]);
         User::factory()->create([
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'passenger3@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
         ]);
         User::factory()->create([
@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'passenger4@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
         ]);
         User::factory()->create([
@@ -105,7 +105,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'driver3@example.com',
             'password' => Hash::make('password'),
             'location' => 'beirut',
-            'img_url' => 'img.png',
+            'img_url' => 'upload/default.jpg',
             'phone_number' => 12355,
         ]);
         Driver::create([
@@ -140,8 +140,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'ali@example.com',
             'password' => 'password',
             'phone_number' => 71000000,
-            'location' => 'location',
-            'img_url' => 'upload/default.png',
+            'location' => 'beirut',
+            'img_url' => 'uploads/default.jpg',
+            'car_name' => 'tyoyota',
             'model' => 'model',
             'color' => 'color',
             'plate_number' => 'plate_number',
@@ -152,8 +153,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'rayan@example.com',
             'password' => 'password',
             'phone_number' => 71000000,
-            'location' => 'location',
-            'img_url' => 'upload/default.png',
+            'location' => 'beirut',
+            'img_url' => 'uploads/default.jpg',
+            'car_name' =>
+            'tyoyota',
             'model' => 'model',
             'color' => 'color',
             'plate_number' => 'plate_number',
@@ -164,8 +167,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'nadim@example.com',
             'password' => 'password',
             'phone_number' => 71000000,
-            'location' => 'location',
-            'img_url' => 'upload/default.png',
+            'location' => 'beirut',
+            'img_url' => 'uploads/default.jpg',
+            'car_name' =>
+            'tyoyota',
             'model' => 'model',
             'color' => 'color',
             'plate_number' => 'plate_number',
@@ -180,7 +185,7 @@ class DatabaseSeeder extends Seeder
             'to_lat' => '12345.22',
             'price' => 15,
             'rate' => 4.5,
-            'duration' => '16:00:00',
+            'duration' => 5,
             'status' => 'pending',
         ]);
         CarRide::create([
@@ -192,9 +197,10 @@ class DatabaseSeeder extends Seeder
             'to_lat' => '12345.22',
             'price' => 15,
             'rate' => 4.5,
-            'duration' => '12:00:00',
+            'duration' => 5,
             'status' => 'pending',
         ]);
+
         CarRide::create([
             'user_id' => 4,
             'driver_id' => 2,
@@ -204,7 +210,7 @@ class DatabaseSeeder extends Seeder
             'to_lat' => '12345.22',
             'price' => 15,
             'rate' => 4.5,
-            'duration' => '16:00:00',
+            'duration' => 5,
             'status' => 'pending',
         ]);
     }
