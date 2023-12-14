@@ -31,7 +31,6 @@ const Navbar = () => {
       try {
         const res = await requestData("refresh", "post", {}, header);
         if (res.status == "success") {
-          localStorage.setItem("token", `Bearer ${res.authorisation.token}`);
           dispatch(setUser(res.user));
           setIsLoggedIn(true);
         }
@@ -50,7 +49,7 @@ const Navbar = () => {
       <h1>Taxi Driver</h1>
       <div className="flex center profile">
         <p>{userState.name}</p>
-        <img src="" alt="" onClick={handleOnClickProfile} />
+        <img src={`http://127.0.0.1:8000/storage/upload/default.png`} alt="" onClick={handleOnClickProfile} />
         <PfpDropDown isHidden={isHidden} setIsLoggedIn={setIsLoggedIn} />
       </div>
     </div>

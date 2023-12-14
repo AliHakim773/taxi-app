@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+// import { useNavigate } from "react-router";
 
 const Button = ({ text, handleOnClick, type, className }) => {
   return (
@@ -8,7 +9,7 @@ const Button = ({ text, handleOnClick, type, className }) => {
       className={`btn btn-primary ${className} `}
       onClick={(e) => {
         e.preventDefault();
-        handleOnClick(e);
+        handleOnClick();
       }}
     >
       {text}

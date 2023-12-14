@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Button from "../common/Button";
-import { orders } from "../../core/mockData";
-import "./style.css";
+import { useParams } from "react-router";
+import { requestData } from "../../core/axios";
+
 export const OrdersTable = () => {
-  const [users, setUsers] = useState([]);
+  const { id } = useParams();
+
+  const [orders, setOrders] = useState([]);
   useEffect(() => {
-    setUsers(orders);
     const token = localStorage.getItem("token");
     const header = {
       Authorization: token,
@@ -13,10 +14,19 @@ export const OrdersTable = () => {
 
     if (!token) {
       console.error("Token not available");
-      setIsLoggedIn(false);
       return;
     }
-  }, [location.pathname]);
+    const get_user_orders = async () => {
+      try {
+        const res = await requestData("get_user_orders", "post", { id }, header);
+        setOrders(res.orders);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    get_user_orders();
+  }, []);
+  const date = Date(orders.created_at).toLocaleString();
   return (
     <table>
       <thead>
@@ -37,19 +47,23 @@ export const OrdersTable = () => {
         </tr>
       </thead>
       <tbody>
-        {users.map((order, index) => (
-          <tr key={index}>
-            <td>{order.orderId}</td>
+        {orders.map((order, index) => (
+          <tr key={index} className="table-row">
+            <td>{order.id}</td>
             <td className="img-name">
               <img src="" alt="" />
-              {order.passenger}
+              {order.user_id}
             </td>
-            <td>{order.picked_up}</td>
-            <td>{order.drop_off}</td>
-            <td>{order.ride_time}</td>
-            <td>{order.date}</td>
+            <td>
+              {order.from_long},{order.from_lat}
+            </td>
+            <td>
+              {order.to_long}, {order.to_lat}
+            </td>
+            <td>{order.duration}</td>
+            <td>{date}</td>
             <td>{order.status}</td>
-            <td>{order.rating}</td>
+            <td>{order.rate}</td>
           </tr>
         ))}
       </tbody>

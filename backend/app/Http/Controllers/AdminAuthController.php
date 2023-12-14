@@ -51,6 +51,7 @@ class AdminAuthController extends Controller
 
     public function logout()
     {
+        $this->authorize('admin');
         Auth::logout();
         return response()->json([
             'status' => 'success',
@@ -58,15 +59,14 @@ class AdminAuthController extends Controller
         ]);
     }
 
+
     public function refresh()
     {
+        $this->authorize('admin');
+
         return response()->json([
             'status' => 'success',
             'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
         ]);
     }
 }

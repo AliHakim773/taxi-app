@@ -7,6 +7,10 @@ table {
   border-top-right-radius: 15px;
 }
 
+.table-row {
+  display: flex;
+  align-items: center;
+}
 table th,
 table td {
   padding: 12px;
@@ -36,10 +40,6 @@ table th {
   font-weight: 800;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-}
-
-table th:last-child {
-  width: 250px;
 }
 
 .img-name {

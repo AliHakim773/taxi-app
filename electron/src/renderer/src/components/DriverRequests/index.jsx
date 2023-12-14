@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Button from "../common/Button";
 import { drivers } from "../../core/mockData";
-export const DriverRequests = () => {
-  const [users, setUsers] = useState([]);
-  const handleAccept = () => {
-    alert("Driver Accepted");
-  };
-  useEffect(() => {
-    setUsers(drivers);
-    const token = localStorage.getItem("token");
-    const header = {
-      Authorization: token,
-    };
+import { requestData } from "../../core/axios";
+import { useNavigate } from "react-router";
 
+export const DriverRequests = ({ users }) => {
+  const navigate = useNavigate();
+
+  const handleAccept = async (id) => {
+    const token = localStorage.getItem("token");
     if (!token) {
       console.error("Token not available");
       setIsLoggedIn(false);
       return;
     }
-  }, [location.pathname]);
+    const headers = {
+      Authorization: token,
+    };
+    const result = await requestData("approve", "post", { id }, headers);
+    navigate(0);
+  };
+
   return (
     <table>
       <thead>
@@ -41,17 +43,17 @@ export const DriverRequests = () => {
         {users.map((driver, index) => (
           <tr key={index}>
             <td className="img-name">
-              <img src="" alt="" />
+              <img src={`http://127.0.0.1:8000/storage/${driver.img_url}`} alt="" />
               {driver.name}
             </td>
             <td>{driver.email}</td>
             <td>{driver.location}</td>
-            <td>{driver.car}</td>
+            <td>{driver.model}</td>
             <td>{driver.color}</td>
-            <td>{driver.plateNumber}</td>
+            <td>{driver.plate_number}</td>
             <td className="status flex">
-              <Button text={"Accept"} handleOnClick={() => handleAccept()} type={"submit"} className="accept-btn" />
-              <Button className={"accept-btn"} text={"Deny"} handleOnClick={() => handleAccept()} type={"submit"} />
+              <Button text={"Accept"} handleOnClick={() => handleAccept(driver.id)} className="accept-btn" />
+              <Button text={"Deny"} handleOnClick={() => handleDeny()} className={"accept-btn"} />
             </td>
           </tr>
         ))}

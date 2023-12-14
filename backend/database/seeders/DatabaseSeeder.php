@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Car;
+use App\Models\CarRide;
 use App\Models\Driver;
+use App\Models\DriverRegisterRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -132,6 +134,78 @@ class DatabaseSeeder extends Seeder
             'model' => 2009,
             'color' => 'white',
             'plate_number' => 'Nadim'
+        ]);
+        DriverRegisterRequest::create([
+            'name' => 'Ali',
+            'email' => 'ali@example.com',
+            'password' => 'password',
+            'phone_number' => 71000000,
+            'location' => 'location',
+            'img_url' => 'upload/default.png',
+            'model' => 'model',
+            'color' => 'color',
+            'plate_number' => 'plate_number',
+            'request_status' => 'pending',
+        ]);
+        DriverRegisterRequest::create([
+            'name' => 'Rayan',
+            'email' => 'rayan@example.com',
+            'password' => 'password',
+            'phone_number' => 71000000,
+            'location' => 'location',
+            'img_url' => 'upload/default.png',
+            'model' => 'model',
+            'color' => 'color',
+            'plate_number' => 'plate_number',
+            'request_status' => 'accepted',
+        ]);
+        DriverRegisterRequest::create([
+            'name' => 'nadim',
+            'email' => 'nadim@example.com',
+            'password' => 'password',
+            'phone_number' => 71000000,
+            'location' => 'location',
+            'img_url' => 'upload/default.png',
+            'model' => 'model',
+            'color' => 'color',
+            'plate_number' => 'plate_number',
+            'request_status' => 'pending',
+        ]);
+        CarRide::create([
+            'user_id' => 4,
+            'driver_id' => 2,
+            'from_long' => '12345.22',
+            'from_lat' => '12345.22',
+            'to_long' => '12345.22',
+            'to_lat' => '12345.22',
+            'price' => 15,
+            'rate' => 4.5,
+            'duration' => '16:00:00',
+            'status' => 'pending',
+        ]);
+        CarRide::create([
+            'user_id' => 4,
+            'driver_id' => 2,
+            'from_long' => '12345.22',
+            'from_lat' => '12345.22',
+            'to_long' => '12345.22',
+            'to_lat' => '12345.22',
+            'price' => 15,
+            'rate' => 4.5,
+            'duration' => '12:00:00',
+            'status' => 'pending',
+        ]);
+        CarRide::create([
+            'user_id' => 4,
+            'driver_id' => 2,
+            'from_long' => '12345.22',
+            'from_lat' => '12345.22',
+            'to_long' => '12345.22',
+            'to_lat' => '12345.22',
+            'price' => 15,
+            'rate' => 4.5,
+            'duration' => '16:00:00',
+            'status' => 'pending',
         ]);
     }
 }

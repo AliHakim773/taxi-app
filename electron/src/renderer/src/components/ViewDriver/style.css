@@ -68,7 +68,7 @@ label {
   border-radius: 10px;
   align-items: center;
   padding: 5px 20px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-evenly;
 }
 
