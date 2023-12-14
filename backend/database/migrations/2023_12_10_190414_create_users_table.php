@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('phone_number');
-            $table->string('location', ['beirut', 'tripoli', 'batroun', 'sayda', 'chouf', 'south']);
+            $table->enum('location', ['beirut', 'tripoli', 'batroun', 'sayda', 'chouf', 'south']);
             $table->string('img_url');
             $table->foreignId('role_id')->constrained()->onDelete('cascade');
             $table->rememberToken();
