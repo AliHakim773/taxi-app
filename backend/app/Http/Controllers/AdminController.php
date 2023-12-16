@@ -53,20 +53,20 @@ class AdminController extends Controller
     public function approve(Request $request)
     {
         $this->authorize('admin');
-        $passenger_request = DriverRegisterRequest::where('id', $request->id)->first();
+        $driver_request = DriverRegisterRequest::where('id', $request->id)->first();
 
-        if ($passenger_request->request_status == 'accepted') {
+        if ($driver_request->request_status == 'accepted') {
             return response()->json(['error' => "This driver has already been accepted"], 406);
         }
-        $passenger_request->request_status = 'accepted';
-        $passenger_request->save();
+        $driver_request->request_status = 'accepted';
+        $driver_request->save();
 
         $user = new User();
-        $user->name = $passenger_request->name;
-        $user->email = $passenger_request->email;
-        $user->phone_number = $passenger_request->phone_number;
-        $user->password = Hash::make($passenger_request->password);
-        $user->location = $passenger_request->location;
+        $user->name = $driver_request->name;
+        $user->email = $driver_request->email;
+        $user->phone_number = $driver_request->phone_number;
+        $user->password = Hash::make($driver_request->password);
+        $user->location = $driver_request->location;
         $user->img_url = 'upload/default.png';
         $user->role_id = 3;
         $user->save();
@@ -82,7 +82,7 @@ class AdminController extends Controller
         $car->model = $driver_request->model;
         $car->color = $driver_request->color;
         $car->plate_number = $driver_request->plate_number;
-        $car->driver_id = $driver->id;
+        $car->driver_id = $driver_request->id;
 
         $car->save();
 
