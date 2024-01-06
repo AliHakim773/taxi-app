@@ -65,7 +65,7 @@ const NavBar = () => {
           )}
 
           <li>
-            <Link to={"/chatroom"} className='nav-item'>
+            <Link to={"/chatroom/1"} className='nav-item'>
               Contact us
             </Link>
           </li>

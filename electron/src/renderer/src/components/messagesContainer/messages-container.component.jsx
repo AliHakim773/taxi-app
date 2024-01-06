@@ -19,7 +19,8 @@ const MessagesContainer = ({ userId }) => {
       try {
         const headers = { Authorization: localStorage.getItem('token') }
         const data = await getMessages('getUsersMessages', 'POST', { receiverId: id }, headers);
-        dispatch(setMessages({ allMessages: data['sorted messages'] }))
+        if (data['sorted messages'].length > 0)
+          dispatch(setMessages({ allMessages: data['sorted messages'] }))
       } catch (error) {
         console.log(error)
       }
